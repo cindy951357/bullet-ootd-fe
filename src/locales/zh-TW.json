@@ -4,12 +4,20 @@
     "Register": "註冊",
     "Logout": "登出",
     "Welcome": "歡迎來到 Bullet OOTD！",
+    "Cancel": "取消",
+    "OK": "確定",
     "Cloth": {
         "AddClothes": "新增衣物",
         "UploadClothesDescription": "在這裡上傳你的衣物圖片。",
         "UploadArea": "拖曳或點擊上傳圖片",
         "SelectImages": "選擇圖片",
         "UploadLimit": "最多可上傳 {{max}} 張圖片。"
-    }
+    },
+    "Popup": {
+    "UploadWarningTitle": "需要上傳圖片",
+    "UploadWarningMessage": "你需要至少上傳一張圖片才能繼續。",
+    "LeavePageTitle": "確定要離開?",
+    "LeavePageMessage": "你確定要離開嗎？你的上傳圖片將會遺失。"
+  }
 }
   

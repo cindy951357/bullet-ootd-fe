@@ -4,12 +4,20 @@
     "Register": "Inscription",
     "Logout": "Déconnexion",
     "Welcome": "Bienvenue sur Bullet OOTD !",
+    "Cancel": "Annuler",
+    "OK": "D'accord",
     "Cloth": {
         "AddClothes": "Ajouter des vêtements",
         "UploadClothesDescription": "Téléchargez ici vos images de vêtements.",
         "UploadArea": "Glissez-déposez ou cliquez pour télécharger des images",
         "SelectImages": "Sélectionner des images",
         "UploadLimit": "Vous pouvez télécharger un maximum de {{max}} images."
-    }      
+    },
+    "Popup": {
+        "UploadWarningTitle": "Téléchargement requis",
+        "UploadWarningMessage": "Vous devez télécharger au moins une image avant de continuer.",
+        "LeavePageTitle": "Quitter la page?",
+        "LeavePageMessage": "Êtes-vous sûr de vouloir quitter? Vos images téléchargées seront perdues."
+    }
   }
   

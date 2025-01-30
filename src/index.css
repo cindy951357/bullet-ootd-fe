@@ -18,6 +18,10 @@
 
 /* 本專案基本按鈕的定義在這裡 */
 @layer utilities {
+  button, .btn-close, .btn-cancel {
+    border-radius: 0.5rem;
+  }
+
   button {
     cursor: pointer;
     background-color: var(--color-secondary);
@@ -37,5 +41,16 @@
   button.btn-header:hover, .btn-header:hover  {
     background-color: var(--color-primary-hovered); /* 使用inherit是因為要套用整體header的配色 */
     color: var(--color-on-primary-hovered);
+  }
+  .btn-cancel {
+    background-color: white;
+    color: gray;
+    box-sizing: border-box;
+    border: 0.5px solid gray;
+  }
+  .btn-cancel:hover {
+    background-color: gray;
+    color: lightgray;
+    border: none;
   }
 }
