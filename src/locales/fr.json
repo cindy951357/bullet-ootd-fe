@@ -7,7 +7,9 @@
     "Cloth": {
         "AddClothes": "Ajouter des vêtements",
         "UploadClothesDescription": "Téléchargez ici vos images de vêtements.",
-        "UploadArea": "Glissez-déposez ou cliquez pour télécharger des images"
+        "UploadArea": "Glissez-déposez ou cliquez pour télécharger des images",
+        "SelectImages": "Sélectionner des images",
+        "UploadLimit": "Vous pouvez télécharger un maximum de {{max}} images."
     }      
   }
   

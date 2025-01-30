@@ -7,7 +7,9 @@
     "Cloth": {
         "AddClothes": "新增衣物",
         "UploadClothesDescription": "在這裡上傳你的衣物圖片。",
-        "UploadArea": "拖曳或點擊上傳圖片"
+        "UploadArea": "拖曳或點擊上傳圖片",
+        "SelectImages": "選擇圖片",
+        "UploadLimit": "最多可上傳 {{max}} 張圖片。"
     }
 }
   

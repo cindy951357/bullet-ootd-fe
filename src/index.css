@@ -1,13 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #B76E79; /* 乾燥玫瑰色 */
-  --color-primary-hovered: #9E5A65;
-  --color-on-primary: #E8BFC0; /* 淺乾燥玫瑰色 */
+  --color-primary: oklch(95% 0.1 24.5); /* 主色 淺乾燥玫瑰色 */
+  --color-primary-hovered: oklch(87% 0.1 24.5); /* primary的第一個參數扣掉8 percents */
+  --color-on-primary: oklch(85% 0.1 24.5); /* 乾燥玫瑰色 */
+  --color-on-primary: oklch(80% 0.1 24.5); /* on-primary的第一個參數扣掉5 percents */
 
-  --color-secondary: #FCE883; /* 嫩鵝黃色 */
-  --color-secondary-hovered: oklch(82% 0.16 100);
-  --color-on-secondary: oklch(96% 0.1 100); /* 淺嫩鵝黃色 */
+  --color-secondary: oklch(95% 0.05 95); /* 嫩鵝黃色 */
+  --color-secondary-hovered: oklch(87% 0.05 95); /* secondary的第一個參數扣掉8 percents */
+  --color-on-secondary: oklch(80% 0.05 95);
 
   --color-highlight: oklch(80% 0.15 280); /* 淺紫色 */
+
+  --color-close: oklch(85% 0.22 25); /* 淺紅色 */
+  --color-close-hovered: oklch(65% 0.25 25); /* 標準紅色 */
+}
+
+/* 本專案基本按鈕的定義在這裡 */
+@layer utilities {
+  button {
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    color: var(--color-on-secondary);
+  }
+  button:hover {
+    background-color: var(--color-secondary-hovered);
+  }
 }
