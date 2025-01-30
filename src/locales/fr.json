@@ -3,6 +3,11 @@
     "Login": "Connexion",
     "Register": "Inscription",
     "Logout": "Déconnexion",
-    "Welcome": "Bienvenue sur Bullet OOTD !"
+    "Welcome": "Bienvenue sur Bullet OOTD !",
+    "Cloth": {
+        "AddClothes": "Ajouter des vêtements",
+        "UploadClothesDescription": "Téléchargez ici vos images de vêtements.",
+        "UploadArea": "Glissez-déposez ou cliquez pour télécharger des images"
+    }      
   }
   

@@ -3,6 +3,11 @@
     "Login": "登入",
     "Register": "註冊",
     "Logout": "登出",
-    "Welcome": "歡迎來到 Bullet OOTD！"
-  }
+    "Welcome": "歡迎來到 Bullet OOTD！",
+    "Cloth": {
+        "AddClothes": "新增衣物",
+        "UploadClothesDescription": "在這裡上傳你的衣物圖片。",
+        "UploadArea": "拖曳或點擊上傳圖片"
+    }
+}
   

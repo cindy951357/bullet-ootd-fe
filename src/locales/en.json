@@ -3,6 +3,11 @@
     "Login": "Login",
     "Register": "Register",
     "Logout": "Logout",
-    "Welcome": "Welcome to Bullet OOTD!"
+    "Welcome": "Welcome to Bullet OOTD!",
+    "Cloth": {
+        "AddClothes": "Add Clothes",
+        "UploadClothesDescription": "Upload your clothing images here.",
+        "UploadArea": "Drag & drop or click to upload images"
+    }
   }
   
