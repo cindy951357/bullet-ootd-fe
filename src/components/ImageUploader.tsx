@@ -46,7 +46,7 @@ function ImageUploader() {
 
       <button id="btn-select-img"
         onClick={() => fileInputRef.current?.click()}
-        className="text-white p-2 rounded"
+        className="p-2 rounded w-full"
       >
         {t("Cloth.SelectImages")}
       </button>

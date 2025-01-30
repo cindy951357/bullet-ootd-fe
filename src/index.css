@@ -3,16 +3,16 @@
 @theme {
   --color-primary: oklch(95% 0.1 24.5); /* 主色 淺乾燥玫瑰色 */
   --color-primary-hovered: oklch(87% 0.1 24.5); /* primary的第一個參數扣掉8 percents */
-  --color-on-primary: oklch(85% 0.1 24.5); /* 乾燥玫瑰色 */
-  --color-on-primary: oklch(80% 0.1 24.5); /* on-primary的第一個參數扣掉5 percents */
+  --color-on-primary: oklch(81% 0.1 25); /* 乾燥玫瑰色 */
+  --color-on-primary-hovered: oklch(77% 0.1 24.5); /* on-primary的第一個參數扣掉若干 percents */
 
-  --color-secondary: oklch(95% 0.05 95); /* 嫩鵝黃色 */
-  --color-secondary-hovered: oklch(87% 0.05 95); /* secondary的第一個參數扣掉8 percents */
-  --color-on-secondary: oklch(80% 0.05 95);
+  --color-secondary: oklch(98.67% 0.1 86.29); /* 嫩鵝黃色 */
+  --color-secondary-hovered: oklch(94.67% 0.1 86.29); /* secondary的第一個參數扣掉若干 percents */
+  --color-on-secondary:  gray;
 
   --color-highlight: oklch(80% 0.15 280); /* 淺紫色 */
 
-  --color-close: oklch(85% 0.22 25); /* 淺紅色 */
+  --color-close: oklch(56% 0.02 18); /* 摻雜紅色的灰色 */
   --color-close-hovered: oklch(65% 0.25 25); /* 標準紅色 */
 }
 
@@ -25,5 +25,17 @@
   }
   button:hover {
     background-color: var(--color-secondary-hovered);
+  }
+  button.btn-header, .btn-header {
+    display: flex;
+    height: 100%;
+    background-color: inherit; /* 使用inherit是因為要套用整體header的配色 */
+    color: inherit;
+    align-items: center;
+    justify-items: center;
+  }
+  button.btn-header:hover, .btn-header:hover  {
+    background-color: var(--color-primary-hovered); /* 使用inherit是因為要套用整體header的配色 */
+    color: var(--color-on-primary-hovered);
   }
 }

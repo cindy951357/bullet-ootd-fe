@@ -7,18 +7,18 @@ function Header() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
-    <header id="header" className="bg-primary text-white p-4 flex relative justify-end">
-      <h1 id="website-title" className=" w-full absolute text-xl font-bold text-center text-on-primary">{t('WebTitle')}</h1>
-      <div className="flex">
+    <header id="header" className="bg-primary text-white p-4 flex relative justify-center">
+      <h1 id="website-title" className="text-xl font-bold text-center text-on-primary">{t('WebTitle')}</h1>
+      <div id="btn-group-header" className="absolute top-0 right-2 h-full">
         {isLoggedIn ? (
-          <button onClick={() => setIsLoggedIn(false)}
-            className="mr-2 p-2"
+          <button id="btn-logout" onClick={() => setIsLoggedIn(false)}
+            className="btn-header"
           >{t('Logout')}</button>
         ) : (
-          <>
-            <Link to="/login" className="mr-2 p-2">{t('Login')}</Link>
-            <Link to="/register" className="p-2">{t('Register')}</Link>
-          </>
+          <div id="btns-is-logged-out" className="flex h-full items-center">
+            <Link to="/login" className="btn-header mr-2 p-2">{t('Login')}</Link>
+            <Link to="/register" className="btn-header p-2">{t('Register')}</Link>
+          </div>
         )}
       </div>
     </header>
