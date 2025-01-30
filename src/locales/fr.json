@@ -6,6 +6,10 @@
     "Welcome": "Bienvenue sur Bullet OOTD !",
     "Cancel": "Annuler",
     "OK": "D'accord",
+    "Calendar": {
+        "Previous": "Précédent",
+        "Next": "Suivant"
+    },      
     "Cloth": {
         "AddClothes": "Ajouter des vêtements",
         "UploadClothesDescription": "Téléchargez ici vos images de vêtements.",

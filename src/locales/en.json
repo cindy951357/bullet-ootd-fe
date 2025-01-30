@@ -6,6 +6,10 @@
     "Welcome": "Welcome to Bullet OOTD!",
     "Cancel": "Cancel",
     "OK": "OK",
+    "Calendar": {
+        "Previous": "Previous",
+        "Next": "Next"
+    },      
     "Cloth": {
         "AddClothes": "Add Clothes", 
         "UploadClothesDescription": "Upload your clothing images here.",

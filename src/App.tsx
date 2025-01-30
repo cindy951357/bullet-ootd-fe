@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AddItems from "./pages/AddItems";
-import OOTDCalendar from "./pages/OOTDCalendar";
+import OOTDCalendar from "./pages/OutfitCalendar";
 import AddOOTD from "./pages/AddOutfit";
 
 import "./i18n"; // 🔥 載入 i18n 設定
