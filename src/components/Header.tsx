@@ -8,8 +8,8 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <header id="header" className="bg-primary text-white p-4 flex relative justify-center">
-      <h1 id="website-title" className="text-xl font-bold text-center text-on-primary">{t('WebTitle')}</h1>
-      <div id="btn-group-header" className="absolute top-0 right-2 h-full">
+      <h1 id="website-title" className="text-xl sm:text-lg font-bold text-center text-on-primary">{t('WebTitle')}</h1>
+      <div id="btn-group-header" className="absolute top-0 right-0 h-full">
         {isLoggedIn ? (
           <button id="btn-logout" onClick={() => setIsLoggedIn(false)}
             className="btn-header"

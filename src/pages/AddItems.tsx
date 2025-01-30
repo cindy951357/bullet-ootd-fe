@@ -28,7 +28,7 @@ function AddItems() {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [images]);
-  
+
   // 處理提交按鈕點擊
   const handleSubmit = () => {
     if (images.length === 0) {
@@ -56,7 +56,7 @@ function AddItems() {
       <ImageUploader />
 
        {/* 按鈕組 */}
-       <div id="add-items-btn-group" className="mt-4 flex gap-4">
+       <div id="add-items-btn-group" className="mt-4 flex gap-4 flex-wrap justify-center sm:flex-col">
         <button
           id="btn-submit"
           onClick={handleSubmit}

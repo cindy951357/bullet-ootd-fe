@@ -51,7 +51,7 @@ function ImageUploader() {
         {t("Cloth.SelectImages")}
       </button>
 
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 gap-2">
         {Array.from({ length: totalSlots }).map((_, index) => (
           index < images.length ? (
             <div key={`uploaded-${index}`} className="relative aspect-square">
