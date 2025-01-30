@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #B76E79; /* 乾燥玫瑰色 */
+  --color-primary-hovered: #9E5A65;
+  --color-on-primary: #E8BFC0; /* 淺乾燥玫瑰色 */
+
+  --color-secondary: #FCE883; /* 嫩鵝黃色 */
+  --color-secondary-hovered: oklch(82% 0.16 100);
+  --color-on-secondary: oklch(96% 0.1 100); /* 淺嫩鵝黃色 */
+
+  --color-highlight: oklch(80% 0.15 280); /* 淺紫色 */
+}
