@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { RootState } from "../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, } from "react-redux";
 import ImageUploader from "../components/ImageUploader";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,6 @@ import Popup from "../components/Popup";
 function AddItems() {
   const { t } = useTranslation();
   const images = useSelector((state: RootState) => state.image.images);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showUploadWarning, setShowUploadWarning] = useState(false);
   const [showLeaveWarning, setShowLeaveWarning] = useState(false);

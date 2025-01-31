@@ -18,7 +18,7 @@ function OutfitCalendar() {
   const dispatch = useDispatch();
   const [currentMonth, setCurrentMonth] = useState(moment());
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(null);
-  const [currentTravDate, setCurrentTravDate] = useState<moment.Moment>(moment());
+  const [_, setCurrentTravDate] = useState<moment.Moment>(moment());
   const [showDetail, setShowDetail] = useState(false);
   const [selectedOutfitId, setSelectedOutfitId] = useState<string>("");
 
@@ -174,7 +174,7 @@ function OutfitCalendar() {
 
       {viewMode === "month" && (
         <div className="grid grid-cols-7 gap-2">
-          {generateCalendar(1).map((day, i) => {  // 1 表示從週一開始
+          {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始
             const date = day.format("YYYY-MM-DD");
             const ootd = getOOTDByDate(date);
 

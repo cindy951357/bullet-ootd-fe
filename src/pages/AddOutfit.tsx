@@ -1,5 +1,3 @@
-import React from "react";
-
 function AddOutfit() {
   return (
     <div className="p-4">
