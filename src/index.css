@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 @import "tailwindcss";
 
+body {
+  font-family: "Nunito", sans-serif;
+}
+
 @theme {
-  --color-primary: oklch(95% 0.1 24.5); /* 主色 淺乾燥玫瑰色 */
-  --color-primary-hovered: oklch(87% 0.1 24.5); /* primary的第一個參數扣掉8 percents */
-  --color-on-primary: oklch(81% 0.1 25); /* 乾燥玫瑰色 */
-  --color-on-primary-hovered: oklch(77% 0.1 24.5); /* on-primary的第一個參數扣掉若干 percents */
+  --color-primary: oklch(97.5% 0.06 24.5); /* 主色 淺乾燥玫瑰色 */
+  --color-primary-hovered: oklch(84% 0.1 24.5); /* primary的第一個參數扣掉8 percents */
+  --color-on-primary: oklch(81% 0.1 25); /* 乾燥玫瑰色 按鈕預設色 */
+  --color-on-primary-hovered: oklch(30% 0 20); /* 按鈕hover色 */
 
   --color-secondary: oklch(98.67% 0.1 86.29); /* 嫩鵝黃色 */
   --color-secondary-hovered: oklch(94.67% 0.1 86.29); /* secondary的第一個參數扣掉若干 percents */
@@ -14,6 +19,8 @@
 
   --color-close: oklch(56% 0.02 18); /* 摻雜紅色的灰色 */
   --color-close-hovered: oklch(65% 0.25 25); /* 標準紅色 */
+
+  --font-primary: "Nunito", sans-serif;
 }
 
 /* 本專案基本按鈕的定義在這裡 */
@@ -31,11 +38,11 @@
   button:hover {
     background-color: var(--color-secondary-hovered);
   }
-  button.btn-header, .btn-header {
+  button.btn-header, a.btn-header {
     display: flex;
     height: 100%;
     background-color: inherit; /* 使用inherit是因為要套用整體header的配色 */
-    color: inherit;
+    color: oklch(30% 0 20);
     align-items: center;
     justify-items: center;
 
@@ -56,5 +63,11 @@
     background-color: gray;
     color: lightgray;
     border: none;
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-primary);
   }
 }

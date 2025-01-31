@@ -22,6 +22,12 @@
         "UploadWarningMessage": "You need to upload at least one image before proceeding.",
         "LeavePageTitle": "Leave Page?",
         "LeavePageMessage": "Are you sure you want to leave? Your uploaded images will be lost."
-    }
+    },
+    "ViewMode": {
+        "Day": "Day",
+        "Week": "Week",
+        "Month": "Month",
+        "Task": "Task"
+    }      
 }
   
