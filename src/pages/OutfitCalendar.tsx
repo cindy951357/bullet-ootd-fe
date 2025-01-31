@@ -17,6 +17,7 @@ function OutfitCalendar() {
   const [currentMonth, setCurrentMonth] = useState(moment());
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(null);
   const [showDetail, setShowDetail] = useState(false);
+  const [selectedOutfitId, setselectedOutfitId] = useState<string>("");
 
   // 以下兩者將互相取交集
   const outfits = useSelector((state: RootState) => state.ootd.outfits);
@@ -90,6 +91,7 @@ function OutfitCalendar() {
             onClick={() => {
               setSelectedDate(day);
               setShowDetail(true);
+              setselectedOutfitId(ootd?.id ?? "");
             }}
           >
             <span className="text-sm font-bold">{day.format("ddd")}</span>
@@ -100,7 +102,10 @@ function OutfitCalendar() {
       </div>
 
       {showDetail && selectedDate && (
-        <OutfitDetail date={selectedDate} onClose={() => setShowDetail(false)} />
+        <OutfitDetail date={selectedDate.format("YYYY-MM-DD")}
+          onClose={() => setShowDetail(false)} 
+          outfitId={selectedOutfitId} outfits={outfits}
+        />
       )}
     </div>
   );
