@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect, } from "react";
+import { useDispatch, } from "react-redux";
 import moment from "moment";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { generateRandomOOTD } from "../utils/genOOTD";
+import { setOOTD } from "../features/ootdSlice";
 import { useTranslation } from "react-i18next";
 import OutfitDetail from "../components/OutfitDetail";
+import OOTDGrid from "../components/SingleOutfitGrid";
+import { OOTD } from "../types/ootd";
+
 
 function OutfitCalendar() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [currentMonth, setCurrentMonth] = useState(moment());
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(null);
   const [showDetail, setShowDetail] = useState(false);
 
+  // 以下兩者將互相取交集
+  const outfits = useSelector((state: RootState) => state.ootd.outfits);
+  const dateMapping = useSelector((state: RootState) => state.ootd.dateMapping);
+
+  // 查找對應的 OOTD 資料
+  const getOOTDByDate = (date: string) => {
+    // 先用日期找尋 dateMapping 內吻合的
+    const mapping = dateMapping.find((mapping) => mapping.date === date);
+    if (!mapping) return undefined;
+    // 再用 dateMapping 中的 outfitId 欄位找吻合的 outfit
+    return outfits.find((ootd) => ootd.id === mapping.outfitId);
+  };
+  
   const changeMonth = (offset: number) => {
     setCurrentMonth(prev => prev.clone().add(offset, "months"));
   };
@@ -38,6 +60,14 @@ function OutfitCalendar() {
 
   const days = generateCalendar();
 
+  // 初始化 OOTD 資料
+  useEffect(() => {
+    // 生成 `k` 套衣服，每套衣服分配 `j` 天
+    const {outfits, dateMapping} = generateRandomOOTD(12, 3);
+    dispatch(setOOTD({outfits, dateMapping})); // 傳遞至 Redux Store
+  }, [dispatch]);
+  
+
   return (
     <div id="outfit-calendar" className="p-4">
       <div id="calendar-header" className="flex justify-between items-center mb-4">
@@ -51,7 +81,9 @@ function OutfitCalendar() {
           <div key={`weekday-${index}`} className="text-center font-bold">{day}</div>
         ))}
 
-        {days.map((day, index) => (
+        {days.map((day, index) => {
+          const ootd = getOOTDByDate(day.format("YYYY-MM-DD"));
+          return (
           <div
             key={index}
             className="border p-2 flex flex-col items-center cursor-pointer hover:bg-gray-200 transition"
@@ -62,13 +94,9 @@ function OutfitCalendar() {
           >
             <span className="text-sm font-bold">{day.format("ddd")}</span>
             <span className="text-sm">{day.format("D")}</span>
-            <img
-              src={`/demo-outfits/top-0${(index % 2) + 1}.png`}
-              alt="OOTD"
-              className="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-300"
-            />
+            <OOTDGrid ootd={ootd} />
           </div>
-        ))}
+        )})}
       </div>
 
       {showDetail && selectedDate && (

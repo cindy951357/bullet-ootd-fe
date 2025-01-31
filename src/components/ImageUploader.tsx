@@ -58,7 +58,8 @@ function ImageUploader() {
               <img
                 src={images[index]}
                 alt={`Uploaded ${index}`}
-                className="w-full object-cover aspect-square rounded"
+                className="w-full object-contain
+                aspect-square rounded"
               />
               <button
                 onClick={() => dispatch(removeImage(index))}

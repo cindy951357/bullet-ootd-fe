@@ -20,6 +20,7 @@
 @layer utilities {
   button, .btn-close, .btn-cancel {
     border-radius: 0.5rem;
+    padding: 0.5rem;
   }
 
   button {

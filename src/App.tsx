@@ -4,11 +4,9 @@ import Footer from "./components/Footer";
 import AddItems from "./pages/AddItems";
 import OOTDCalendar from "./pages/OutfitCalendar";
 import AddOOTD from "./pages/AddOutfit";
+import "./i18n";
 
-import "./i18n"; // 🔥 載入 i18n 設定
-
-
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -27,3 +25,7 @@ function App() {
 }
 
 export default App;
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}
+

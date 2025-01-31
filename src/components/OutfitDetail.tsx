@@ -1,15 +1,26 @@
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import SingleOutfitGrid from "./SingleOutfitGrid";
 
 interface OutfitDetailProps {
   date: moment.Moment;
   onClose: () => void;
 }
 
-function OutfitDetail({ date, onClose }: OutfitDetailProps) {
+const OutfitDetail = ({ date, onClose }: OutfitDetailProps) => {
   const { t } = useTranslation();
+  const outfits = useSelector((state: RootState) => state.ootd.outfits);
+  const dateMappingState = useSelector((state: RootState) => state.ootd.dateMapping);
+
+  // 先用日期找尋 dateMapping 內吻合的
+  const mapping = dateMappingState.find((mapping) => mapping.date === date);
+  if (!mapping) return undefined;
+  // 再用 dateMapping 中的 outfitId 欄位找吻合的 outfit
+  const ootd = outfits.find((ootd) => ootd.id === mapping.outfitId);
 
   return (
-    <div id="outfit-detail-overlay" className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div id="outfit-detail-overlay" className="fixed inset-0 bg-black bg-opacity-10 flex justify-center items-center z-50">
       <div id="outfit-detail-box" className="bg-white p-6 rounded-lg shadow-lg text-center w-96 relative">
         <button id="btn-close-outfit-detail" onClick={onClose} className="btn-close absolute top-2 right-2">
           ✕
@@ -19,11 +30,8 @@ function OutfitDetail({ date, onClose }: OutfitDetailProps) {
         <p id="outfit-detail-description" className="mt-2">{t("Outfit details for this day")}</p>
 
         {/* OOTD 圖片 */}
-        <img
-          src={`/demo-outfits/fullset-0${(date.date() % 2) + 1}.png`}
-          alt="Outfit"
-          className="w-full aspect-square object-cover rounded mt-4"
-        />
+        {ootd && <SingleOutfitGrid ootd={ootd} />}
+        {!ootd && <p className="text-gray-500">No outfit data for this date.</p>}
 
         <div id="outfit-detail-btn-group" className="mt-4 flex justify-center gap-4">
           <button id="btn-edit-outfit" className="btn-cancel">{t("Edit")}</button>
