@@ -4,9 +4,9 @@ interface OOTDGridProps {
   ootd?: OOTD;
 }
 
-const SingleOutfitGrid = ({ ootd }: OOTDGridProps) => {
+const OOTDOutfitGrid = ({ ootd }: OOTDGridProps) => {
   if (!ootd) {
-    return <div className="w-full h-full bg-gray-100 rounded" />;
+    return <div className="cell-without-ootd w-full h-full bg-gray-100 rounded" />;
   }
 
   if (ootd.layout === "single") {
@@ -21,12 +21,27 @@ const SingleOutfitGrid = ({ ootd }: OOTDGridProps) => {
 
   if (ootd.layout === "double") {
     return (
-      <div className="double-outfit-grid grid grid-cols-2 gap-1 w-full h-full
+      <div className="double-outfit-grid grid grid-cols-2 grid-rows-2 gap-1 w-full h-full
         opacity-60 hover:opacity-100 hover:cursor-pointer
       ">
-        {ootd.items.map((item, i) => (
-          <img key={i} src={item.image} alt="OOTD" className="w-full aspect-square object-cover rounded" />
-        ))}
+        {[...ootd.items, {dummy: 2}, {dummy: 3}].map((item: Object, i) => {
+          if(item.image) {
+            return (
+              <img key={i} src={item.image} alt="OOTD"
+                className="w-full aspect-square object-cover rounded"
+              />);
+          } else {
+            return (<div
+              key={i}
+              className="w-full aspect-square bg-gray-300 rounded flex items-center justify-center"
+            >
+              <span className="text-gray-500 text-sm">
+                <img src="/icon-hanger-stroked.svg" alt="logo"
+                  className="placeholder-hanger sm:w-4 w-8 lg:w-12 xl:w-16"
+                />
+              </span>
+            </div>)
+          }})}
       </div>
     );
   }
@@ -64,4 +79,4 @@ const SingleOutfitGrid = ({ ootd }: OOTDGridProps) => {
   return null;
 }
 
-export default SingleOutfitGrid;
+export default OOTDOutfitGrid;

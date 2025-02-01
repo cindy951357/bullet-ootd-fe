@@ -10,7 +10,7 @@ import { setOOTD } from "../features/ootdSlice";
 import { setViewDate, setViewMode } from "../features/calendarSlice";
 
 import OutfitDetail from "../components/OutfitDetail";
-import OOTDGrid from "../components/SingleOutfitGrid";
+import OOTDGrid from "../components/OOTDOutfitGrid";
 
 
 function OutfitCalendar() {
@@ -112,7 +112,7 @@ function OutfitCalendar() {
   // 初始化 OOTD 資料
   useEffect(() => {
     // 生成 `k` 套衣服，每套衣服分配 `j` 天
-    const {outfits, dateMapping} = generateRandomOOTD(12, 3);
+    const {outfits, dateMapping} = generateRandomOOTD(12, 1);
     dispatch(setOOTD({outfits, dateMapping})); // 傳遞至 Redux Store
   }, [dispatch]);
   
@@ -142,7 +142,14 @@ function OutfitCalendar() {
       {/* 根據 viewMode 渲染不同的日曆 */}
       {viewMode === "day" && (
         <div className="day-mode flex w-full justify-center">
-          <div className="max-w-1/3 min-w-[200px] border-primary border-solid p-4 flex flex-col">
+          <div className="max-w-1/3 min-w-[200px] border-primary border-solid p-4 flex flex-col"
+            onClick={() => {
+              const ootd = getOOTDByDate(currentViewDate);
+              setSelectedDate(moment(currentViewDate, "YYYY-MM-DD"));
+              setSelectedOutfitId(ootd?.id ?? "");
+              setShowDetail(!!ootd);
+            }}
+          >
             <h3 className="font-bold">{moment(currentViewDate).format("dddd, YYYY-MM-DD")}</h3>
             <OOTDGrid ootd={getOOTDByDate(currentViewDate)} />
           </div> 
@@ -150,17 +157,17 @@ function OutfitCalendar() {
       )}
 
       {viewMode === "week" && (
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-7 sm:gap-0 gap-1 lg:gap-2">
           {[...Array(7)].map((_, i) => {
             const weekDate = moment(currentViewDate).startOf("week").add(i, "days").format("YYYY-MM-DD");
             const ootd = getOOTDByDate(weekDate);
             return (
-              <div key={weekDate} className="border-primary border-solid  p-2 flex
+              <div key={weekDate} className="w_[100px] aspect-square border-primary border-solid sm:p-1 md:p-2 flex
                 flex-col items-center"
                 onClick={() => {
                   setSelectedDate(moment(weekDate, "YYYY-MM-DD"));
                   setSelectedOutfitId(ootd?.id ?? "");
-                  setShowDetail(true);
+                  setShowDetail(!!ootd);
                 }}
               >
                 <span className="text-sm font-bold">{moment(weekDate).format("ddd")}</span>
@@ -177,15 +184,16 @@ function OutfitCalendar() {
           {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始
             const date = day.format("YYYY-MM-DD");
             const ootd = getOOTDByDate(date);
-
             return (
               <div
                 key={date}
-                className="border-primary border-solid p-2 flex flex-col items-center"
+                className="w_[100px] aspect-square border-primary border-solid
+                sm:p-1 md:p-2
+                flex flex-col items-center"
                 onClick={() => {
                   setSelectedDate(moment(date, "YYYY-MM-DD"));
                   setSelectedOutfitId(ootd?.id ?? "");
-                  setShowDetail(true);
+                  setShowDetail(!!ootd);
                 }}
               >
                 <span className="text-sm font-bold">{day.format("D")}</span>

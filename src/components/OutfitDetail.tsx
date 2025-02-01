@@ -1,4 +1,4 @@
-import SingleOutfitGrid from "./SingleOutfitGrid";
+import SingleOutfitGrid from "./OOTDOutfitGrid";
 import { OOTD } from "../types/ootd";
 
 interface OutfitDetailProps {
@@ -23,7 +23,14 @@ function OutfitDetail({ outfitId, date, outfits, onClose }: OutfitDetailProps) {
         <h2 className="text-xl font-bold mb-4">{date}</h2>
 
         {ootd && <SingleOutfitGrid ootd={ootd} />}
-        {!ootd && <p className="text-gray-500">No outfit data for this date.</p>}
+        {!ootd && (<div
+              className="w-full aspect-square bg-gray-300 rounded flex items-center justify-center"
+            >              
+              <img src="/icon-hanger-stroked.svg" alt="logo"
+                className="placeholder-hanger sm:w-4 w-8 lg:w-12 xl:w-16"
+              />
+            </div>
+        )}
       </div>
     </div>
   );
