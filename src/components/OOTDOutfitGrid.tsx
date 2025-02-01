@@ -1,9 +1,9 @@
-import { OOTD, OOTDItem } from "../types/ootd";
+import { OOTD, OutfitItem } from "../types/ootd";
 
 interface OOTDGridProps {
   ootd?: OOTD;
-  selectedItem?: OOTDItem | null; // 被選中的單品
-  onClick?: (item: OOTDItem) => void; // 點選事件
+  selectedItem?: OutfitItem | null; // 被選中的單品
+  onClick?: (item: OutfitItem) => void; // 點選事件
 }
 
 const OOTDOutfitGrid = ({ ootd, selectedItem, onClick }: OOTDGridProps) => {
@@ -17,7 +17,7 @@ const OOTDOutfitGrid = ({ ootd, selectedItem, onClick }: OOTDGridProps) => {
    * - 提供點擊事件，將當前單品的資料傳遞給父層的 `onClick` 處理函數。
    * - 適用於所有佈局模式中的單品顯示。
    */
-  const renderItem = (item: OOTDItem, index: number) => (
+  const renderItem = (item: OutfitItem, index: number) => (
     <div
       key={index}
       className={`relative w-full aspect-square cursor-pointer rounded ${
