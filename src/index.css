@@ -64,6 +64,10 @@ body {
     color: lightgray;
     border: none;
   }
+  .btn-close {
+    aspect-ratio: 1/1;
+    width: 2.5rem;
+  }
 }
 
 @layer base {

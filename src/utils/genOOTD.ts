@@ -2,20 +2,22 @@ import { OOTD, OutfitItem, LayoutType } from "../types/ootd";
 import moment from "moment";
 
 // 假設的衣物清單
+// 假設的衣物清單
 const demoItems: OutfitItem[] = [
-  { id: "1", image: "/demo-outfits/top-01.png", category: "top" },
-  { id: "2", image: "/demo-outfits/top-02.png", category: "top" },
-  { id: "3", image: "/demo-outfits/bottom-01.png", category: "bottom" },
-  { id: "4", image: "/demo-outfits/bottom-02.png", category: "bottom" },
-  { id: "5", image: "/demo-outfits/footwear-01.png", category: "footwear" },
-  { id: "6", image: "/demo-outfits/footwear-02.png", category: "footwear" },
-  { id: "7", image: "/demo-outfits/accessory-01.png", category: "accessory" },
-  { id: "8", image: "/demo-outfits/accessory-02.png", category: "accessory" },
-  { id: "9", image: "/demo-outfits/outerwear-01.png", category: "outerwear" },
-  { id: "10", image: "/demo-outfits/outerwear-02.png", category: "outerwear" },
-  { id: "11", image: "/demo-outfits/fullset-01.png", category: "fullset" },
-  { id: "12", image: "/demo-outfits/fullset-02.png", category: "fullset" },
+  { id: "1", image: "/demo-outfits/top-01.png", category: "Top", subCategory: "T-Shirt", brand: "Brand A", wearCount: 3, rating: 4.5 },
+  { id: "2", image: "/demo-outfits/top-02.png", category: "Top", subCategory: "Blouse", brand: "Brand B", wearCount: 5, rating: 4.2 },
+  { id: "3", image: "/demo-outfits/bottom-01.png", category: "Bottom", subCategory: "Jeans", brand: "Brand C", wearCount: 7, rating: 4.8 },
+  { id: "4", image: "/demo-outfits/bottom-02.png", category: "Bottom", subCategory: "Skirt", brand: "Brand D", wearCount: 2, rating: 3.9 },
+  { id: "5", image: "/demo-outfits/footwear-01.png", category: "Footwear", subCategory: "Sneakers", brand: "Brand E", wearCount: 10, rating: 4.7 },
+  { id: "6", image: "/demo-outfits/footwear-02.png", category: "Footwear", subCategory: "Boots", brand: "Brand F", wearCount: 4, rating: 4.3 },
+  { id: "7", image: "/demo-outfits/accessory-01.png", category: "Accessory", subCategory: "Necklace", brand: "Brand G", wearCount: 8, rating: 4.6 },
+  { id: "8", image: "/demo-outfits/accessory-02.png", category: "Accessory", subCategory: "Bracelet", brand: "Brand H", wearCount: 6, rating: 4.1 },
+  { id: "9", image: "/demo-outfits/outerwear-01.png", category: "Outerwear", subCategory: "Jacket", brand: "Brand I", wearCount: 9, rating: 4.9 },
+  { id: "10", image: "/demo-outfits/outerwear-02.png", category: "Outerwear", subCategory: "Coat", brand: "Brand J", wearCount: 3, rating: 4.0 },
+  { id: "11", image: "/demo-outfits/fullset-01.png", category: "Fullset", subCategory: "Dress", brand: "Brand K", wearCount: 1, rating: 4.4 },
+  { id: "12", image: "/demo-outfits/fullset-02.png", category: "Fullset", subCategory: "Suit", brand: "Brand L", wearCount: 2, rating: 4.2 },
 ];
+
 
 // 布局類型
 const layouts: LayoutType[] = ["single", "double", "four-grid", "nine-grid"];
