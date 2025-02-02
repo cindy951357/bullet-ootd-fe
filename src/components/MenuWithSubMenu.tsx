@@ -13,7 +13,7 @@ const MenuWithSubMenu = () => {
     });
     const menuRefs = useRef<HTMLDivElement[]>([]);
   
-    // 計算下劃線的位置
+  // 計算底線動畫的位置
   useEffect(() => {
       const targetMenu = hoverMenu || activeMenu;
       const targetIndex = MENUS.findIndex((menu) => menu.title === targetMenu);
@@ -79,7 +79,7 @@ const MenuWithSubMenu = () => {
 
         {/* 底部線段平移動畫效果；在 DOM tree 上可獨立撰寫*/}
         <div
-          id="animatable-underline"
+          id="animatable-line"
           className="absolute bottom-0 h-[2px] bg-on-primary transition-all duration-300"
           style={{ left: underlineStyle.left, width: underlineStyle.width }}
         ></div>
