@@ -27,7 +27,7 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen, isLoggedIn, setIsLo
 
   return (
     isMobileMenuOpen && (
-      <div id="mobile-menu" className="absolute top-full left-0 w-full bg-white shadow-lg z-50 p-4 md:hidden">
+      <div id="mobile-menu" className="absolute top-full h-screen left-0 w-full bg-white shadow-lg z-50 p-4 md:hidden">
         {MENUS.map((menu, index) => (
           <div ref={(el) => (menuRefs.current[index] = el!)}
             key={menu.title}            
