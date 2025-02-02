@@ -36,7 +36,7 @@ const MenuWithSubMenu = () => {
             onMouseLeave={() => setHoverMenu("")}
           >
             <div
-              className={`menu-item cursor-pointer px-4 py-2 text-lg font-bold ${
+              className={`menu-item cursor-pointer px-4 py-2 text-primary text-lg font-bold ${
                 activeMenu === menu.title
                   ? "text-on-primary border-b-2 border-primary"
                   : "text-gray-700"
@@ -77,7 +77,7 @@ const MenuWithSubMenu = () => {
           </div>
         ))}
 
-        {/* 平移動畫效果；在 DOM tree 上可獨立撰寫*/}
+        {/* 底部線段平移動畫效果；在 DOM tree 上可獨立撰寫*/}
         <div
           id="animatable-underline"
           className="absolute bottom-0 h-[2px] bg-on-primary transition-all duration-300"

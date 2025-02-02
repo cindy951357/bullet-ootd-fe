@@ -180,7 +180,8 @@ function OutfitCalendar() {
       )}
 
       {viewMode === "month" && (
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-7 sm:gap-[1px] gap-1 lg:gap-2">
+          {/** gap 要有RWD */}
           {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始
             const date = day.format("YYYY-MM-DD");
             const ootd = getOOTDByDate(date);
