@@ -7,7 +7,7 @@ body {
 
 @theme {
   --color-primary: oklch(97.5% 0.06 24.5); /* 主色 淺乾燥玫瑰色 */
-  --color-primary-hovered: oklch(84% 0.1 24.5); /* primary的第一個參數扣掉8 percents */
+  --color-primary-hovered: oklch(65% 0 24.5); /* 無彩色 */
   --color-on-primary: oklch(81% 0.1 25); /* 乾燥玫瑰色 按鈕預設色 */
   --color-on-primary-hovered: oklch(30% 0 20); /* 按鈕hover色 */
 

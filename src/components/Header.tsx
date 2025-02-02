@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import MenuWithSubMenu from "./MenuWithSubMenu";
 
 function Header() {
   const { t } = useTranslation();
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
-    <header id="header" className="bg-primary text-white p-4 flex relative justify-center">
+    <header id="header" className="bg-primary text-white p-4 flex relative justify-between">
       <h1 id="website-title" className="flex justify-center items-center font-primary text-xl sm:text-lg
         font-bold text-center text-on-primary">
         <img src="/icon-hanger.svg" className="w-10"></img>
         {t('WebTitle')}
         <img src="/icon-hanger.svg" className="w-10"></img>
       </h1>
-      <div id="btn-group-header" className="absolute top-0 right-0 h-full">
+
+      <MenuWithSubMenu />
+
+      <div id="btn-group-header" className="h-full">
         {isLoggedIn ? (
           <button id="btn-logout" onClick={() => setIsLoggedIn(false)}
             className="btn-header"

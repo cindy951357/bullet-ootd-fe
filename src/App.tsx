@@ -14,7 +14,7 @@ const App = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<OOTDCalendar />} />
-            <Route path="/add-items" element={<AddItems />} />
+            <Route path="/add-item" element={<AddItems />} />
             <Route path="/add-ootd" element={<AddOOTD />} />
           </Routes>
         </main>
