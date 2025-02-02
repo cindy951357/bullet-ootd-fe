@@ -36,7 +36,7 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen, isLoggedIn, setIsLo
             {/* Menu Item */}
             <div 
               className="parent-menu-item cursor-pointer px-4 py-3 text-gray-400 text-lg font-bold relative
-              flex justify-between items-center border-b hover:text-gray-600              
+              flex justify-between items-center border-b hover:text-gray-600 active:text-gray-600          
               "
               onClick={() => {
                 onMenuItemClick(menu);
@@ -52,9 +52,8 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen, isLoggedIn, setIsLo
                   <Link
                     key={idx}
                     to={sub.path}
-                    className="block px-6 py-2 text-gray-700 hover:bg-primary"
+                    className="block px-6 py-2 text-gray-700 hover:bg-primary active:bg-primary"
                     onClick={() => {
-                        setActiveMenu(menu.title);
                         setIsMobileMenuOpen(false);
                     }} // 點擊後關閉選單
                   >
