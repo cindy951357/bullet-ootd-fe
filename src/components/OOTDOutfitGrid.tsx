@@ -54,12 +54,12 @@ console.log(filledCellsNum, updateTotalCellNum, updateEmptyCellNum)
       {/** 若 selectedItems undefined，不進行以下判斷*/}
       {isEditing && Array.from({ length: emptyCells }).map((_, i) => (
         <div key={`empty-${i}`} className="empty-cell
-        w-full md:w-[100px] aspect-square bg-gray-100 rounded" />
+        w-full md:w-[80px] aspect-square bg-gray-100 rounded" />
       ))}
       {
         !isEditing && !ootd && (
           <div key={`empty-without-outfit`} className="empty-cell
-          w-full md:w-[100px] aspect-square bg-gray-100 rounded" />
+          w-full md:w-[80px] aspect-square bg-gray-100 rounded" />
         )
       }
     </div>
