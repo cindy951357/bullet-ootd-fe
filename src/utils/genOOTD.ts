@@ -63,7 +63,7 @@ export const generateRandomOOTD = (k: number, j: number) => {
 
     // 此迴圈產生每套衣服各自連續出現j次
     // 原本本函數參數是指，為該套衣服分配 `j` 天
-    for (let d = 0; d < j; d++) {
+    for (let d = 0; d < j; d += 2) {
       // 說明 i * j + d：
       // i：當前迭代的衣服索引（表示第幾套衣服）。
       // j：每套衣服被分配的天數。

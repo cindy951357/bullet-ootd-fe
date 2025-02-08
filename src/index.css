@@ -5,6 +5,10 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 @theme {
   --color-primary: oklch(97.5% 0.06 24.5); /* 主色 淺乾燥玫瑰色 */
   --color-primary-hovered: oklch(65% 0 24.5); /* 無彩色 */
@@ -76,7 +80,7 @@ body {
   }
   @media (max-width: 500px) {
     .btn-calendar{
-      font-size: 0.7rem;
+      font-size: 0.55rem;
     }
   }
 }

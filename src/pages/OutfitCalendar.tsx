@@ -15,7 +15,7 @@ import { OOTD } from "../types/ootd";
 
 const TodayWeatherComponent = () => {
   return (
-    <div className={`weather-section flex order-2 sm:order-1
+    <div className={`weather-section w-[150px] max-w-full h-full flex
       flex-col
       bg-yellow-50 p-4 rounded-lg shadow-md`}>
       <h3 className="text-xl font-bold mb-2">Today's Weather</h3>
@@ -26,7 +26,7 @@ const TodayWeatherComponent = () => {
 
 const TodayEventComponent = () => {
   return (
-    <div className="event-section flex flex-col order-3
+    <div className="event-section  w-[150px] max-w-full h-full flex flex-col
       bg-yellow-50 p-4 rounded-lg shadow-md">
       <h3 className="text-xl font-bold mb-2">Today's Event</h3>
       <p className="text-gray-600">Casual Outing</p>
@@ -101,12 +101,12 @@ function OutfitCalendar() {
     const startOfMonth = firstDayOfMonth.clone().startOf("week").add(weekStartDay, "days");
   
     // 日曆結束日期
-    const lastDayOfMonth = currentMonth.clone().endOf("month");
+    // const lastDayOfMonth = currentMonth.clone().endOf("month");
     // 當月日曆的結束日期
-    const endOfMonth = lastDayOfMonth.clone().endOf("week").add(weekStartDay, "days");
+    // const endOfMonth = lastDayOfMonth.clone().endOf("week").add(weekStartDay, "days");
   
     // 確保日曆包含完整的天數（30, 36 或 42 天）
-    const totalDays = Math.ceil(endOfMonth.diff(startOfMonth, "days") / 7) * 7;
+    const totalDays = 42; //Math.ceil(endOfMonth.diff(startOfMonth, "days") / 7) * 7;
     /* 將總天數除以 7，計算需要幾週來涵蓋這些天數。
       這可能是一個小數（例如：如果有 38 天，則結果是 5.4286 週）。
       Math.ceil(... / 7)
@@ -156,11 +156,13 @@ function OutfitCalendar() {
   
 
   return (
-    <div className="three-sections flex flex-col sm:flex-row gap-1">
+    <div id="outfit-calendar-page" className="three-sections w-full h-full flex flex-col 
+      sm:flex-row gap-1 items-center
+      px-[1px] sm:px-1">
       {!isSmallScreen && <TodayWeatherComponent />}
-      <div id="outfit-calendar-page" className="w-full max-w-[800px] min-w-[350px] sm:w-[580px] m-auto
-          flex flex-col flex-1 order-2 sm:order-1
-          justify-center items-center pt-[2px] shadow-md">
+      <div id="main-calendar" className="w-full max-w-screen min-w-[350px] sm:w-[566px] m-auto
+          flex flex-col flex-1
+          justify-center items-center pt-[2px]">
             <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
               <div id="calendar-inner-header" className="flex justify-between items-center pb-[2px] mb-[2px]
               ">
@@ -200,12 +202,12 @@ function OutfitCalendar() {
             )}
 
             {viewMode === "week" && (
-              <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
+              <div className="grid grid-cols-7 md:w-full sm:gap-0 gap-[1px]">
                 {[...Array(7)].map((_, i) => {
                   const weekDate = moment(currentViewDate).startOf("week").add(i, "days").format("YYYY-MM-DD");
                   const ootd = getOOTDByDate(weekDate);
                   return (
-                    <div key={weekDate} className="w-full md:w-[80px] aspect-square border-primary border-solid
+                    <div key={weekDate} className="cell w-full max-w-[48px] sm:max-w-[80px] md:max-w-full aspect-square border-primary border-solid
                       sm:p-[1px]  lg:p-2 flex
                       flex-col items-center"
                       onClick={() => {
@@ -224,7 +226,7 @@ function OutfitCalendar() {
             )}
 
             {viewMode === "month" && (
-              <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
+              <div className="grid grid-cols-7 md:w-full md:max-w-full sm:gap-0 gap-[1px] lg:gap-1">
                 {/** gap 要有RWD */}
                 {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始，不是從星期日
                   const date = day.format("YYYY-MM-DD");
@@ -232,7 +234,7 @@ function OutfitCalendar() {
                   return (
                     <div
                       key={date}
-                      className="w-full md:w-[80px] aspect-square border-primary border-solid
+                      className="cell w-full max-w-[48px] sm:max-w-[80px] aspect-square border-primary border-solid
                       sm:p-[1px] lg:p-2
                       flex flex-col items-center"
                       onClick={() => {

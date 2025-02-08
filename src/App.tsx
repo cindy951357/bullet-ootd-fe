@@ -9,9 +9,9 @@ import "./i18n";
 const App = () => {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="just-under-router flex flex-col w-screen h-screen min-h-screen">
         <Header />
-        <main className="flex-1">
+        <main className="flex flex-1">
           <Routes>
             <Route path="/" element={<OOTDCalendar />} />
             <Route path="/add-item" element={<AddItems />} />
