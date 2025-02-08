@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { v4 as uuidv4 } from "uuid";
@@ -101,7 +101,7 @@ function AddOutfit() {
       {/* 預覽拼圖區 */}
       <div className="flex justify-center py-2 mt-2 border-t border-gray-200">
         <OOTDOutfitGrid  ootd={{ id: newId, layout: currentLayout, items: selectedItems}} selectedItems={selectedItems}
-        onClick={() => {}} />
+        onClick={() => {}}  isEditing={true}/>
       </div>      
 
       {/* 提交按鈕 */}

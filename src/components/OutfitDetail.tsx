@@ -14,13 +14,8 @@ function OutfitDetail({ outfitId, date, outfits, onClose }: OutfitDetailProps) {
   const ootd = outfits.find((outfit) => outfit.id === outfitId);
 
   // 狀態：儲存被選中的單品
-  const [selectedItem, setSelectedItem] = useState<OutfitItem | null>(null);
+  const [selectedItem, _] = useState<OutfitItem | null>(null);
 
-  // 點選單品事件處理
-  const handleSelectItem = (item: OutfitItem) => {
-    console.log("handleSelectItem", item);
-    setSelectedItem(item);
-  };
 
   return (
     <div
@@ -37,8 +32,9 @@ function OutfitDetail({ outfitId, date, outfits, onClose }: OutfitDetailProps) {
         {ootd && (
           <OOTDOutfitGrid
             ootd={ootd}
-            onClick={(item) => handleSelectItem(item)} // 傳遞點選事件
-            selectedItem={selectedItem} // 傳遞當前被選中的單品
+            onClick={() => {}} // 傳遞點選事件
+            selectedItems={[]} // 傳遞當前被選中的單品
+            isEditing={false}
           />
         )}
         {!ootd && (

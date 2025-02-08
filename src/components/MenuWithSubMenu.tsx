@@ -26,7 +26,8 @@ const MenuWithSubMenu = () => {
     }, [hoverMenu, activeMenu]);
 
     return (
-      <div id="main-menu" className="relative flex items-center justify-between bg-primary">
+      <div id="main-menu" className="relative flex items-center justify-between
+        bg-primary">
         {MENUS.map((menu, index) => (
           <div
             key={index}
@@ -36,7 +37,7 @@ const MenuWithSubMenu = () => {
             onMouseLeave={() => setHoverMenu("")}
           >
             <div
-              className={`menu-item cursor-pointer px-4 py-2 text-lg font-bold ${
+              className={`menu-item cursor-pointer px-4 py-1 text-base font-bold ${
                 activeMenu === menu.title
                   ? "text-on-primary border-b-2 border-primary"
                   : "text-gray-700"
@@ -58,11 +59,11 @@ const MenuWithSubMenu = () => {
             {menu.subMenu.length > 0 && openSubMenu === menu.title && (
               <div
                 id={`submenu-${menu.title}`}
-                className="absolute left-0 top-full mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200">
+                className="absolute left-0 top-full mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200">
                 {menu.subMenu.map((sub, idx) => (
                   <div
                     key={idx}
-                    className="submenu-item px-4 py-2 cursor-pointer text-gray-300 hover:bg-primary-hovered hover:text-on-primary-hovered"
+                    className="submenu-item px-4 py-1 cursor-pointer text-gray-500 hover:bg-primary-hovered hover:text-on-primary-hovered"
                     onClick={() => {
                       setActiveMenu(menu.title);
                       setOpenSubMenu("");

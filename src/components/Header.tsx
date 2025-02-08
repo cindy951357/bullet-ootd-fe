@@ -11,24 +11,24 @@ function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header id="header" className="bg-primary p-4 flex relative justify-between">
-      <h1 id="website-title-group" className="flex justify-center items-center font-primary text-xl sm:text-lg
+    <header id="header" className="bg-primary py-[2px] px-2 flex relative justify-between">
+      <h1 id="website-title-group" className="md:w-[200px] flex justify-center items-center font-primary text-xl sm:text-lg
         font-bold text-center text-on-primary">
         <img src="/icon-hanger-gray.svg" className="w-10"></img>
-        <span id="website-title" className="flex">{t('WebTitle')}</span>
+        <span id="website-title" className="flex text-base">{t('WebTitle')}</span>
         <img src="/icon-hanger-gray.svg" className="w-10"></img>
       </h1>
 
       {/* 電腦版主選單 - 在大螢幕時顯示 */}
-      <nav className="hidden md:flex">
+      <nav className="hidden md:flex md:flex-1 justify-center">
         <MenuWithSubMenu />
       </nav>
 
       {/* 登出入相關按鈕 - 在大螢幕時顯示 */}
-      <div id="btn-group-header" className="h-full hidden md:flex">
+      <div id="btn-group-header" className="md:w-[200px] h-full hidden md:flex justify-end">
         {isLoggedIn ? (
           <button id="btn-logout" onClick={() => setIsLoggedIn(false)}
-            className="btn-header"
+            className="btn-header flex"
           >{t('Logout')}</button>
         ) : (
           <div id="btns-is-logged-out" className="flex h-full items-center">

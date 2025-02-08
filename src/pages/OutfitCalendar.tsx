@@ -76,12 +76,12 @@ function OutfitCalendar() {
     // 當月第一天
     const firstDayOfMonth = currentMonth.clone().startOf("month");
     
-    // 計算日曆起始日期
+    // 日曆起始日期
     const startOfMonth = firstDayOfMonth.clone().startOf("week").add(weekStartDay, "days");
   
-    // 計算日曆結束日期
+    // 日曆結束日期
     const lastDayOfMonth = currentMonth.clone().endOf("month");
-    // 計算當月日曆的結束日期，確保它包含「當月最後一天所屬的一整週」
+    // 當月日曆的結束日期
     const endOfMonth = lastDayOfMonth.clone().endOf("week").add(weekStartDay, "days");
   
     // 確保日曆包含完整的天數（30, 36 或 42 天）
@@ -89,7 +89,7 @@ function OutfitCalendar() {
     /* 將總天數除以 7，計算需要幾週來涵蓋這些天數。
       這可能是一個小數（例如：如果有 38 天，則結果是 5.4286 週）。
       Math.ceil(... / 7)
-      使用 Math.ceil 將週數向上取整，確保有足夠的週數來顯示完整的日曆結構。
+      使用 Math.ceil 將週數向上取整，確保有足夠的週數。
       例如：如果是 5.4286 週，取整後就是 6 週。
       將取整後的週數乘以 7，得到需要顯示的天數（7 的倍數）。
       例如：6 週 × 7 天 = 42 天。
@@ -119,30 +119,34 @@ function OutfitCalendar() {
   
 
   return (
-    <div id="outfit-calendar" className="p-4">
-      <div id="calendar-header" className="flex justify-between items-center pb-2 mb-4
-        border-b border-primary border-solid 
-      ">
-        <button onClick={() => traverseCalendar(-1)} className="btn-calendar">{t("Previous")}</button>
-        <div id="cur-and-now" className="flex flex-col">
-          <h2 id="cur-view-date" className="text-gray-500 text-s font-bold text-center">
-            {moment(currentViewDate).format("YYYY-MM-DD")}
-          </h2>
-        </div>        
-        <button onClick={() => traverseCalendar(1)} className="btn-calendar">{t("Next")}</button>
-      </div>
-      {/** 切換檢視模式 */}
-      <div id="btn-group-change-view-mode" className="flex justify-center gap-2 mb-4">
-        <button onClick={() => dispatch(setViewMode("day"))} className="btn-calendar">{t("ViewMode.Day")}</button>
-        <button onClick={() => dispatch(setViewMode("week"))} className="btn-calendar">{t("ViewMode.Week")}</button>
-        <button onClick={() => dispatch(setViewMode("month"))} className="btn-calendar">{t("ViewMode.Month")}</button>
-        <button onClick={() => dispatch(setViewMode("task"))} className="btn-calendar">{t("ViewMode.Task")}</button>
-      </div>
+    <div id="outfit-calendar-page" className="w-full max-w-[800px] min-w-[450px] md:w-[800px] sm:w-full m-auto
+    flex flex-col justify-center items-center pt-[2px]">
+      <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
+        <div id="calendar-inner-header" className="flex justify-between items-center pb-[2px] mb-[2px]
+        ">
+          <button onClick={() => traverseCalendar(-1)} className="btn-calendar text-xs md:text-base">
+            {t("Previous")}
+            </button>
+          <div id="cur-and-now" className="flex flex-col">
+            <h2 id="cur-view-date" className="text-gray-500 text-xs sm:text-s font-bold text-center mx-1">
+              {moment(currentViewDate).format("YYYY-MM-DD")}
+            </h2>
+          </div>        
+          <button onClick={() => traverseCalendar(1)} className="btn-calendar text-xs md:text-base">{t("Next")}</button>
+        </div>
+        {/** 切換檢視模式 */}
+        <div id="btn-group-change-view-mode" className="flex justify-center gap-[1px] mb-[2px] pb-[2px]">
+          <button onClick={() => dispatch(setViewMode("day"))} className="btn-calendar">{t("ViewMode.Day")}</button>
+          <button onClick={() => dispatch(setViewMode("week"))} className="btn-calendar">{t("ViewMode.Week")}</button>
+          <button onClick={() => dispatch(setViewMode("month"))} className="btn-calendar">{t("ViewMode.Month")}</button>
+          <button onClick={() => dispatch(setViewMode("task"))} className="btn-calendar">{t("ViewMode.Task")}</button>
+        </div>
+      </div>    
 
       {/* 根據 viewMode 渲染不同的日曆 */}
       {viewMode === "day" && (
         <div className="day-mode flex w-full justify-center">
-          <div className="max-w-1/3 min-w-[200px] border-primary border-solid p-4 flex flex-col"
+          <div className="max-w-1/3 min-w-[200px] border-primary border-solid flex flex-col"
             onClick={() => {
               const ootd = getOOTDByDate(currentViewDate);
               setSelectedDate(moment(currentViewDate, "YYYY-MM-DD"));
@@ -150,19 +154,19 @@ function OutfitCalendar() {
               setShowDetail(!!ootd);
             }}
           >
-            <h3 className="font-bold">{moment(currentViewDate).format("dddd, YYYY-MM-DD")}</h3>
-            <OOTDGrid ootd={getOOTDByDate(currentViewDate)} />
+            <OOTDGrid ootd={getOOTDByDate(currentViewDate)} selectedItems={undefined} isEditing={false}/>
           </div> 
         </div>        
       )}
 
       {viewMode === "week" && (
-        <div className="grid grid-cols-7 sm:gap-0 gap-1 lg:gap-2">
+        <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
           {[...Array(7)].map((_, i) => {
             const weekDate = moment(currentViewDate).startOf("week").add(i, "days").format("YYYY-MM-DD");
             const ootd = getOOTDByDate(weekDate);
             return (
-              <div key={weekDate} className="w_[100px] aspect-square border-primary border-solid sm:p-1 md:p-2 flex
+              <div key={weekDate} className="w_[100px] aspect-square border-primary border-solid
+                sm:p-[1px]  lg:p-2 flex
                 flex-col items-center"
                 onClick={() => {
                   setSelectedDate(moment(weekDate, "YYYY-MM-DD"));
@@ -172,7 +176,7 @@ function OutfitCalendar() {
               >
                 <span className="text-sm font-bold">{moment(weekDate).format("ddd")}</span>
                 <span className="text-sm font-bold">{moment(weekDate).format("D")}</span>
-                <OOTDGrid ootd={ootd} />
+                <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false}/>
               </div>
             );
           })}
@@ -180,16 +184,16 @@ function OutfitCalendar() {
       )}
 
       {viewMode === "month" && (
-        <div className="grid grid-cols-7 sm:gap-[1px] gap-1 lg:gap-2">
+        <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
           {/** gap 要有RWD */}
-          {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始
+          {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始，不是從星期日
             const date = day.format("YYYY-MM-DD");
             const ootd = getOOTDByDate(date);
             return (
               <div
                 key={date}
                 className="w_[100px] aspect-square border-primary border-solid
-                sm:p-1 md:p-2
+                sm:p-[1px] lg:p-2
                 flex flex-col items-center"
                 onClick={() => {
                   setSelectedDate(moment(date, "YYYY-MM-DD"));
@@ -198,7 +202,7 @@ function OutfitCalendar() {
                 }}
               >
                 <span className="text-sm font-bold">{day.format("D")}</span>
-                <OOTDGrid ootd={ootd} />
+                <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false}/>
               </div>
             );
           })}
