@@ -11,7 +11,7 @@ const App = () => {
     <Router>
       <div className="just-under-router flex flex-col w-screen h-screen min-h-screen">
         <Header />
-        <main className="flex flex-1">
+        <main className="flex flex-1 justify-center">
           <Routes>
             <Route path="/" element={<OOTDCalendar />} />
             <Route path="/add-item" element={<AddItems />} />

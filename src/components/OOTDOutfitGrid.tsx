@@ -25,7 +25,6 @@ const OOTDOutfitGrid = ({ ootd, onClick, selectedItems, isEditing, }: OOTDGridPr
     setFilledCells(filledCellsNum);    
     setTotalCells(updateTotalCellNum);
     setEmptyCells(updateEmptyCellNum);
-console.log(filledCellsNum, updateTotalCellNum, updateEmptyCellNum)
   }, [layout, ootd?.items, ootd, selectedItems]);
 
   const renderItem = (item: SimpleOutfitItem, index: number) => (

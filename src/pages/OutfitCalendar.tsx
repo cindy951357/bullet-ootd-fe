@@ -157,12 +157,12 @@ function OutfitCalendar() {
 
   return (
     <div id="outfit-calendar-page" className="three-sections w-full h-full flex flex-col 
-      sm:flex-row gap-1 items-center
+      sm:flex-row gap-1 justify-start items-start
       px-[1px] sm:px-1">
       {!isSmallScreen && <TodayWeatherComponent />}
-      <div id="main-calendar" className="w-full max-w-screen min-w-[350px] sm:w-[566px] m-auto
+      <div id="main-calendar" className="w-full h-full max-w-screen min-w-[350px] sm:w-[566px] m-auto
           flex flex-col flex-1
-          justify-center items-center pt-[2px]">
+          justify-start items-start pt-[2px]">
             <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
               <div id="calendar-inner-header" className="flex justify-between items-center pb-[2px] mb-[2px]
               ">
