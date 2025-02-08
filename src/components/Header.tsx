@@ -12,11 +12,11 @@ function Header() {
 
   return (
     <header id="header" className="bg-primary p-4 flex relative justify-between">
-      <h1 id="website-title" className="flex justify-center items-center font-primary text-xl sm:text-lg
+      <h1 id="website-title-group" className="flex justify-center items-center font-primary text-xl sm:text-lg
         font-bold text-center text-on-primary">
-        <img src="/icon-hanger.svg" className="w-10"></img>
-        {t('WebTitle')}
-        <img src="/icon-hanger.svg" className="w-10"></img>
+        <img src="/icon-hanger-gray.svg" className="w-10"></img>
+        <span id="website-title" className="flex">{t('WebTitle')}</span>
+        <img src="/icon-hanger-gray.svg" className="w-10"></img>
       </h1>
 
       {/* 電腦版主選單 - 在大螢幕時顯示 */}

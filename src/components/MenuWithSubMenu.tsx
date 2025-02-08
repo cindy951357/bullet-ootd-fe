@@ -36,7 +36,7 @@ const MenuWithSubMenu = () => {
             onMouseLeave={() => setHoverMenu("")}
           >
             <div
-              className={`menu-item cursor-pointer px-4 py-2 text-primary text-lg font-bold ${
+              className={`menu-item cursor-pointer px-4 py-2 text-lg font-bold ${
                 activeMenu === menu.title
                   ? "text-on-primary border-b-2 border-primary"
                   : "text-gray-700"

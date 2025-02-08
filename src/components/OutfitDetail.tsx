@@ -44,7 +44,7 @@ function OutfitDetail({ outfitId, date, outfits, onClose }: OutfitDetailProps) {
         {!ootd && (
           <div className="w-full aspect-square bg-gray-300 rounded flex items-center justify-center">
             <img
-              src="/icon-hanger-stroked.svg"
+              src="/icon-hanger-gray.svg"
               alt="logo"
               className="placeholder-hanger sm:w-4 w-8 lg:w-12 xl:w-16"
             />

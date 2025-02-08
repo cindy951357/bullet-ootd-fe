@@ -119,12 +119,11 @@ function OutfitCalendar() {
 
   return (
     <div id="outfit-calendar" className="p-4">
-      <div id="calendar-header" className="flex justify-between items-center mb-4
+      <div id="calendar-header" className="flex justify-between items-center pb-2 mb-4
         border-b border-primary border-solid 
       ">
         <button onClick={() => traverseCalendar(-1)} className="btn-calendar">{t("Previous")}</button>
         <div id="cur-and-now" className="flex flex-col">
-          <h2 id="cur-month" className="text-gray-500 text-xl font-bold text-center px-2 border-b border-b-primary">{currentMonth.format("MMMM YYYY")}</h2>
           <h2 id="cur-view-date" className="text-gray-500 text-s font-bold text-center">
             {moment(currentViewDate).format("YYYY-MM-DD")}
           </h2>
@@ -132,7 +131,7 @@ function OutfitCalendar() {
         <button onClick={() => traverseCalendar(1)} className="btn-calendar">{t("Next")}</button>
       </div>
       {/** 切換檢視模式 */}
-      <div id="btn-group-change-view-mode" className="flex gap-2 mb-4">
+      <div id="btn-group-change-view-mode" className="flex justify-center gap-2 mb-4">
         <button onClick={() => dispatch(setViewMode("day"))} className="btn-calendar">{t("ViewMode.Day")}</button>
         <button onClick={() => dispatch(setViewMode("week"))} className="btn-calendar">{t("ViewMode.Week")}</button>
         <button onClick={() => dispatch(setViewMode("month"))} className="btn-calendar">{t("ViewMode.Month")}</button>
