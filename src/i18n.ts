@@ -19,7 +19,7 @@ i18n
     interpolation: {
       escapeValue: false, // React 已經具備 XSS 防護，無需 escape
     },
-    debug: true, // 啟用 i18n 除錯模式
+    debug: false, // 是否啟用除錯模式
   });
 
 export default i18n;

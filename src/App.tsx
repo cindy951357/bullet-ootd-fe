@@ -15,7 +15,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<OOTDCalendar />} />
             <Route path="/add-item" element={<AddItems />} />
-            <Route path="/add-ootd" element={<AddOOTD />} />
+            <Route path="/add-outfit" element={<AddOOTD />} />
           </Routes>
         </main>
         <Footer />

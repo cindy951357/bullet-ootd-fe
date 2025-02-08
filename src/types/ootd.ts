@@ -1,8 +1,12 @@
 export type LayoutType = "single" | "double" | "four-grid" | "nine-grid";
 
-export interface OutfitItem {
+export interface SimpleOutfitItem {
   id: string;
-  image: string;
+  imageUrl: string;
+  isSelected: boolean;
+}
+
+export interface OutfitItem extends SimpleOutfitItem {
   category: "Top" | "Bottom" | "Footwear" | "Accessory" | "Outerwear" | "Fullset";
   subCategory: "T-shirt" | string;
   brand: string;
@@ -13,5 +17,5 @@ export interface OutfitItem {
 export interface OOTD {
   id: string;
   layout: LayoutType;
-  items: OutfitItem[];
+  items: SimpleOutfitItem[];
 }

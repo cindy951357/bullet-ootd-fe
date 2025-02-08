@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import { MOCK_ITEMS, } from "../mockData";
+import { OutfitItem } from "../types/ootd";
 interface ImageState {
   images: string[]; // 存圖片的 URL
 }
 
-const initialState: ImageState = {
+const initialState: ImageState  & { items: OutfitItem[] }  = {
   images: [],
+  items: MOCK_ITEMS,
 };
 
 const imageSlice = createSlice({

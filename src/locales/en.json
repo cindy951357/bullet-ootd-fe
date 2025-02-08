@@ -6,6 +6,7 @@
     "Welcome": "Welcome to Bullet OOTD!",
     "Cancel": "Cancel",
     "OK": "OK",
+    "Submit": "Submit",
     "Calendar": {
         "Previous": "Previous",
         "Next": "Next"
@@ -28,6 +29,12 @@
         "Week": "Week",
         "Month": "Month",
         "Task": "Task"
-    }      
+    },
+    "Outfit":
+         {
+            "SelectLayoutMsg": "Please select layout.",
+            "AddOOTDTitle": "Add an OOTD",
+            "closetTitle": "Please select from closet"
+        }
 }
   

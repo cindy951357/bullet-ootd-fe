@@ -1,84 +1,45 @@
-import { OOTD, OutfitItem } from "../types/ootd";
+import { LayoutType, OOTD, SimpleOutfitItem } from "../types/ootd";
 
 interface OOTDGridProps {
-  ootd?: OOTD;
-  selectedItem?: OutfitItem | null; // 被選中的單品
-  onClick?: (item: OutfitItem) => void; // 點選事件
+  ootd?: OOTD | null;
+  onClick?: (item?: SimpleOutfitItem) => void;
+  layout: LayoutType;
 }
 
-const OOTDOutfitGrid = ({ ootd, selectedItem, onClick }: OOTDGridProps) => {
-  if (!ootd) {
-    return <div className="cell-without-ootd w-full h-full bg-gray-100 rounded" />;
-  }
+const OOTDOutfitGrid = ({ ootd, onClick, layout }: OOTDGridProps) => {
+console.log("ootd", ootd, "layout", layout)
+  const totalCells = layout === "single" ? 1 : layout === "double" ? 2 : layout === "four-grid" ? 4 : 9;
+  const filledCells = ootd ? ootd.items.length : 0;
+  const emptyCells = totalCells - filledCells;
 
-  // 渲染單一 OOTD 單品
-  const renderItem = (item: OutfitItem, index: number) => (
+  const renderItem = (item: SimpleOutfitItem, index: number) => (
     <div
       key={index}
-      className={`relative w-full aspect-square cursor-pointer rounded ${
-        selectedItem?.id === item.id ? "opacity-100" : "opacity-60"
+      className={`render-one-item relative w-full aspect-square cursor-pointer rounded ${
+        ootd && ootd.items.find((el: SimpleOutfitItem) => el.id === item.id) ? "opacity-100" : "opacity-60"
       }`}
-      onClick={() => {
-        onClick && onClick(item);
-        console.log('clicked item at child layer', item)
-      }}
+      onClick={() => onClick && onClick(item)}
     >
-      <img
-        src={item.image}
-        alt="OOTD"
-        className="w-full h-full object-cover rounded"
-      />
+      <img src={item.imageUrl} alt="Item" className="w-full h-full object-cover rounded" />
     </div>
   );
 
-  if (ootd.layout === "single") {
-    return (
-      <div
-        className="single-outfit-grid flex justify-center items-center w-full h-full
-        opacity-60 hover:opacity-100 hover:cursor-pointer"
-      >
-        {renderItem(ootd.items[0], 0)}
-      </div>
-    );
-  }
-
-  if (ootd.layout === "double") {
-    return (
-      <div
-        className="double-outfit-grid grid grid-cols-2 grid-rows-2 gap-1 w-full h-full
-        opacity-60 hover:opacity-100 hover:cursor-pointer"
-      >
-        {ootd.items.map((item, i) => renderItem(item, i))}
-      </div>
-    );
-  }
-
-  if (ootd.layout === "four-grid") {
-    return (
-      <div
-        className="four-outfit-grid grid grid-cols-2 grid-rows-2
-        gap-1 w-full h-full hover:cursor-pointer
-        opacity-60 hover:opacity-100"
-      >
-        {ootd.items.map((item, i) => renderItem(item, i))}
-      </div>
-    );
-  }
-
-  if (ootd.layout === "nine-grid") {
-    return (
-      <div
-        className="nine-outfit-grid 
-        grid grid-cols-3 grid-rows-3 gap-[1px] w-full h-full
-        opacity-60 hover:opacity-100 border-gray border-solid
-        hover:cursor-pointer"
-      >
-        {ootd.items.map((item, i) => renderItem(item, i))}
-      </div>
-    );
-  }
-
-  return null;
+  return (
+    <div id="ootd-grid"
+      className={`grid gap-1 w-full max-w-1/2 h-full hover:cursor-pointer hover:opacity-100 ${
+        totalCells === 1 ? "grid-cols-1" :
+        totalCells === 2 ? "grid-cols-2 grid-rows-1" :
+        totalCells === 4 ? "grid-cols-2 grid-rows-2" :
+        "grid-cols-3 grid-rows-3"
+      }`}
+    >
+      {ootd && ootd.items.map((item, i) => renderItem(item, i))}
+      {Array.from({ length: emptyCells }).map((_, i) => (
+        <div key={`empty-${i}`} className="empty-cell
+        w-full aspect-square bg-gray-100 rounded" />
+      ))}
+    </div>
+  );
 };
 
 export default OOTDOutfitGrid;
