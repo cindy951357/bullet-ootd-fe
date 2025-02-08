@@ -13,6 +13,25 @@ import OutfitDetail from "../components/OutfitDetail";
 import OOTDGrid from "../components/OOTDOutfitGrid";
 import { OOTD } from "../types/ootd";
 
+const TodayWeatherComponent = () => {
+  return (
+    <div className={`weather-section flex order-2 sm:order-1
+      flex-col
+      bg-yellow-50 p-4 rounded-lg shadow-md`}>
+      <h3 className="text-xl font-bold mb-2">Today's Weather</h3>
+      <p className="text-gray-600">Sunny☀️, 25°C</p>
+    </div>
+  )
+}
+
+const TodayEventComponent = () => {
+  return (
+    <div className="event-section flex flex-col order-3
+      bg-yellow-50 p-4 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold mb-2">Today's Event</h3>
+      <p className="text-gray-600">Casual Outing</p>
+    </div>
+  )}
 
 function OutfitCalendar() {
   const { t } = useTranslation();
@@ -25,6 +44,8 @@ function OutfitCalendar() {
 
   const currentViewDate = useSelector((state: RootState) => state.calendar.currentViewDate);
   const viewMode = useSelector((state: RootState) => state.calendar.viewMode);
+
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false); // 控制螢幕大小
 
   // 以下兩者將互相取交集
   const outfits = useSelector((state: RootState) => state.ootd.ootds);
@@ -110,6 +131,22 @@ function OutfitCalendar() {
     return days;
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      // 檢測螢幕是否小於 sm 尺寸 (640px)
+      setIsSmallScreen(window.matchMedia("(max-width: 640px)").matches);
+    };
+
+    // 初始化檢測
+    handleResize();
+
+    // 添加事件監聽
+    window.addEventListener("resize", handleResize);
+
+    // 清除事件監聽
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // 初始化 OOTD 資料
   useEffect(() => {
     // 生成 `k` 套衣服，每套衣服分配 `j` 天
@@ -119,103 +156,109 @@ function OutfitCalendar() {
   
 
   return (
-    <div id="outfit-calendar-page" className="w-full max-w-[800px] min-w-[350px] md:w-[800px] sm:w-full m-auto
-    flex flex-col justify-center items-center pt-[2px]">
-      <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
-        <div id="calendar-inner-header" className="flex justify-between items-center pb-[2px] mb-[2px]
-        ">
-          <button onClick={() => traverseCalendar(-1)} className="btn-calendar text-xs md:text-base">
-            {t("Previous")}
-            </button>
-          <div id="cur-and-now" className="flex flex-col">
-            <h2 id="cur-view-date" className="text-gray-500 text-xs sm:text-s font-bold text-center mx-1">
-              {moment(currentViewDate).format("YYYY-MM-DD")}
-            </h2>
-          </div>        
-          <button onClick={() => traverseCalendar(1)} className="btn-calendar text-xs md:text-base">{t("Next")}</button>
-        </div>
-        {/** 切換檢視模式 */}
-        <div id="btn-group-change-view-mode" className="flex justify-center gap-[1px] mb-[2px] pb-[2px]">
-          <button onClick={() => dispatch(setViewMode("day"))} className="btn-calendar">{t("ViewMode.Day")}</button>
-          <button onClick={() => dispatch(setViewMode("week"))} className="btn-calendar">{t("ViewMode.Week")}</button>
-          <button onClick={() => dispatch(setViewMode("month"))} className="btn-calendar">{t("ViewMode.Month")}</button>
-          <button onClick={() => dispatch(setViewMode("task"))} className="btn-calendar">{t("ViewMode.Task")}</button>
-        </div>
-      </div>    
-
-      {/* 根據 viewMode 渲染不同的日曆 */}
-      {viewMode === "day" && (
-        <div className="day-mode flex w-full justify-center">
-          <div className="max-w-1/3 min-w-[200px] border-primary border-solid flex flex-col"
-            onClick={() => {
-              const ootd = getOOTDByDate(currentViewDate);
-              setSelectedDate(moment(currentViewDate, "YYYY-MM-DD"));
-              setSelectedOutfitId(ootd?.id ?? "");
-              setShowDetail(!!ootd);
-            }}
-          >
-            <OOTDGrid ootd={getOOTDByDate(currentViewDate)} selectedItems={undefined} isEditing={false}/>
-          </div> 
-        </div>        
-      )}
-
-      {viewMode === "week" && (
-        <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
-          {[...Array(7)].map((_, i) => {
-            const weekDate = moment(currentViewDate).startOf("week").add(i, "days").format("YYYY-MM-DD");
-            const ootd = getOOTDByDate(weekDate);
-            return (
-              <div key={weekDate} className="w-[80px] aspect-square border-primary border-solid
-                sm:p-[1px]  lg:p-2 flex
-                flex-col items-center"
-                onClick={() => {
-                  setSelectedDate(moment(weekDate, "YYYY-MM-DD"));
-                  setSelectedOutfitId(ootd?.id ?? "");
-                  setShowDetail(!!ootd);
-                }}
-              >
-                <span className="text-sm font-bold">{moment(weekDate).format("ddd")}</span>
-                <span className="text-sm font-bold">{moment(weekDate).format("D")}</span>
-                <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false}/>
+    <div className="three-sections flex flex-col sm:flex-row gap-1">
+      {!isSmallScreen && <TodayWeatherComponent />}
+      <div id="outfit-calendar-page" className="w-full max-w-[800px] min-w-[350px] sm:w-[580px] m-auto
+          flex flex-col flex-1 order-2 sm:order-1
+          justify-center items-center pt-[2px] shadow-md">
+            <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
+              <div id="calendar-inner-header" className="flex justify-between items-center pb-[2px] mb-[2px]
+              ">
+                <button onClick={() => traverseCalendar(-1)} className="btn-calendar text-xs md:text-base">
+                  {t("Previous")}
+                  </button>
+                <div id="cur-and-now" className="flex flex-col">
+                  <h2 id="cur-view-date" className="text-gray-500 text-xs sm:text-s font-bold text-center mx-1">
+                    {moment(currentViewDate).format("YYYY-MM-DD")}
+                  </h2>
+                </div>        
+                <button onClick={() => traverseCalendar(1)} className="btn-calendar text-xs md:text-base">{t("Next")}</button>
               </div>
-            );
-          })}
-        </div>
-      )}
-
-      {viewMode === "month" && (
-        <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
-          {/** gap 要有RWD */}
-          {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始，不是從星期日
-            const date = day.format("YYYY-MM-DD");
-            const ootd = getOOTDByDate(date);
-            return (
-              <div
-                key={date}
-                className="w-[80px] aspect-square border-primary border-solid
-                sm:p-[1px] lg:p-2
-                flex flex-col items-center"
-                onClick={() => {
-                  setSelectedDate(moment(date, "YYYY-MM-DD"));
-                  setSelectedOutfitId(ootd?.id ?? "");
-                  setShowDetail(!!ootd);
-                }}
-              >
-                <span className="text-sm font-bold">{day.format("D")}</span>
-                <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false}/>
+              {/** 切換檢視模式 */}
+              <div id="btn-group-change-view-mode" className="flex justify-center gap-[1px] mb-[2px] pb-[2px]">
+                <button onClick={() => dispatch(setViewMode("day"))} className="btn-calendar">{t("ViewMode.Day")}</button>
+                <button onClick={() => dispatch(setViewMode("week"))} className="btn-calendar">{t("ViewMode.Week")}</button>
+                <button onClick={() => dispatch(setViewMode("month"))} className="btn-calendar">{t("ViewMode.Month")}</button>
+                <button onClick={() => dispatch(setViewMode("task"))} className="btn-calendar">{t("ViewMode.Task")}</button>
               </div>
-            );
-          })}
-        </div>
-      )}
+            </div>    
 
-      {viewMode === "task" && (
-        <div>
-          <h3 className="font-bold">{t("ViewMode.Task")}</h3>
-          {/* 這裡可以改為根據 Redux 內的 Task 資料顯示清單 */}
-          <p className="text-gray-500">{t("TaskViewPlaceholder")}</p>
-        </div>
-      )}
+            {/* 根據 viewMode 渲染不同的日曆 */}
+            {viewMode === "day" && (
+              <div className="day-mode flex w-full justify-center">
+                <div className="max-w-1/3 min-w-[200px] border-primary border-solid flex flex-col"
+                  onClick={() => {
+                    const ootd = getOOTDByDate(currentViewDate);
+                    setSelectedDate(moment(currentViewDate, "YYYY-MM-DD"));
+                    setSelectedOutfitId(ootd?.id ?? "");
+                    setShowDetail(!!ootd);
+                  }}
+                >
+                  <OOTDGrid ootd={getOOTDByDate(currentViewDate)} selectedItems={undefined} isEditing={false}/>
+                </div> 
+              </div>        
+            )}
+
+            {viewMode === "week" && (
+              <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
+                {[...Array(7)].map((_, i) => {
+                  const weekDate = moment(currentViewDate).startOf("week").add(i, "days").format("YYYY-MM-DD");
+                  const ootd = getOOTDByDate(weekDate);
+                  return (
+                    <div key={weekDate} className="w-full md:w-[80px] aspect-square border-primary border-solid
+                      sm:p-[1px]  lg:p-2 flex
+                      flex-col items-center"
+                      onClick={() => {
+                        setSelectedDate(moment(weekDate, "YYYY-MM-DD"));
+                        setSelectedOutfitId(ootd?.id ?? "");
+                        setShowDetail(!!ootd);
+                      }}
+                    >
+                      <span className="text-sm font-bold">{moment(weekDate).format("ddd")}</span>
+                      <span className="text-sm font-bold">{moment(weekDate).format("D")}</span>
+                      <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false}/>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {viewMode === "month" && (
+              <div className="grid grid-cols-7 sm:gap-0 gap-[1px] lg:gap-1">
+                {/** gap 要有RWD */}
+                {generateCalendar(1).map((day, _) => {  // 1 表示從週一開始，不是從星期日
+                  const date = day.format("YYYY-MM-DD");
+                  const ootd = getOOTDByDate(date);
+                  return (
+                    <div
+                      key={date}
+                      className="w-full md:w-[80px] aspect-square border-primary border-solid
+                      sm:p-[1px] lg:p-2
+                      flex flex-col items-center"
+                      onClick={() => {
+                        setSelectedDate(moment(date, "YYYY-MM-DD"));
+                        setSelectedOutfitId(ootd?.id ?? "");
+                        setShowDetail(!!ootd);
+                      }}
+                    >
+                      <span className="text-sm font-bold">{day.format("D")}</span>
+                      <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false}/>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {viewMode === "task" && (
+              <div>
+                <h3 className="font-bold">{t("ViewMode.Task")}</h3>
+                {/* 這裡可以改為根據 Redux 內的 Task 資料顯示清單 */}
+                <p className="text-gray-500">{t("TaskViewPlaceholder")}</p>
+              </div>
+            )}
+      </div>
+      {isSmallScreen && <TodayWeatherComponent />} 
+      <TodayEventComponent/>
 
       {showDetail && selectedDate && (
         <OutfitDetail date={selectedDate.format("YYYY-MM-DD")}
