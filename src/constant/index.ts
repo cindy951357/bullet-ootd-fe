@@ -30,3 +30,4 @@ export const MENUS = [
   
 export const MAX_IMAGES = 20;
 export const MIN_PLACEHOLDERS = 5;
+export const MAX_CALENDAR_CELL_HEIGHT = 100; 

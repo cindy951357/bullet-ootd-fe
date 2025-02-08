@@ -13,10 +13,12 @@ import OutfitDetail from "../components/OutfitDetail";
 import OOTDGrid from "../components/OOTDOutfitGrid";
 import { OOTD } from "../types/ootd";
 
+// import { MAX_CALENDAR_CELL_HEIGHT, } from "../constant";
+
 const TodayWeatherComponent = () => {
   return (
-    <div className={`weather-section w-[150px] max-w-full h-full flex
-      flex-col
+    <div className={`weather-section w-full h-full flex
+      sm:max-w-[15vw] flex-col
       bg-yellow-50 p-4 rounded-lg shadow-md`}>
       <h3 className="text-xl font-bold mb-2">Today's Weather</h3>
       <p className="text-gray-600">Sunny☀️, 25°C</p>
@@ -26,7 +28,8 @@ const TodayWeatherComponent = () => {
 
 const TodayEventComponent = () => {
   return (
-    <div className="event-section  w-[150px] max-w-full h-full flex flex-col
+    <div className="event-section w-full h-full flex
+      sm:max-w-[15vw] flex-col
       bg-yellow-50 p-4 rounded-lg shadow-md">
       <h3 className="text-xl font-bold mb-2">Today's Event</h3>
       <p className="text-gray-600">Casual Outing</p>
@@ -156,11 +159,14 @@ function OutfitCalendar() {
   
 
   return (
-    <div id="outfit-calendar-page" className="three-sections w-full h-full flex flex-col 
-      sm:flex-row gap-1 justify-start items-start
+    <div id="outfit-calendar-page" className="three-sections w-[95vw] sm:w-full h-full
+      flex flex-col gap-2
+      sm:flex-row sm:gap-1 justify-center items-start
+      mb-2 sm:mb-2
       px-[1px] sm:px-1">
       {!isSmallScreen && <TodayWeatherComponent />}
-      <div id="main-calendar" className="w-full h-full max-w-screen min-w-[350px] sm:w-[566px] m-auto
+      <div id="main-calendar" className="w-full h-full max-w-[95vw]
+        sm:max-w-[566px] sm:max-h-[430px]
           flex flex-col flex-1
           justify-start items-start pt-[2px]">
             <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
@@ -188,7 +194,7 @@ function OutfitCalendar() {
             {/* 根據 viewMode 渲染不同的日曆 */}
             {viewMode === "day" && (
               <div className="day-mode flex w-full justify-center">
-                <div className="max-w-1/3 min-w-[200px] border-primary border-solid flex flex-col"
+                <div className="max-w-full border-primary border-solid flex flex-col"
                   onClick={() => {
                     const ootd = getOOTDByDate(currentViewDate);
                     setSelectedDate(moment(currentViewDate, "YYYY-MM-DD"));
