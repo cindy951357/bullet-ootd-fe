@@ -119,7 +119,7 @@ function OutfitCalendar() {
   
 
   return (
-    <div id="outfit-calendar-page" className="w-full max-w-[800px] min-w-[450px] md:w-[800px] sm:w-full m-auto
+    <div id="outfit-calendar-page" className="w-full max-w-[800px] min-w-[350px] md:w-[800px] sm:w-full m-auto
     flex flex-col justify-center items-center pt-[2px]">
       <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
         <div id="calendar-inner-header" className="flex justify-between items-center pb-[2px] mb-[2px]

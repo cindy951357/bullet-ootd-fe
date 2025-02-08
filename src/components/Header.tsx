@@ -11,7 +11,7 @@ function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header id="header" className="bg-primary py-[2px] px-2 flex relative justify-between">
+    <header id="header" className="min-w-[350px] bg-primary py-[2px] px-2 flex relative justify-between">
       <h1 id="website-title-group" className="md:w-[200px] flex justify-center items-center font-primary text-xl sm:text-lg
         font-bold text-center text-on-primary">
         <img src="/icon-hanger-gray.svg" className="w-10"></img>
