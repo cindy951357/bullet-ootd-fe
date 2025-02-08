@@ -207,7 +207,7 @@ function OutfitCalendar() {
                   const weekDate = moment(currentViewDate).startOf("week").add(i, "days").format("YYYY-MM-DD");
                   const ootd = getOOTDByDate(weekDate);
                   return (
-                    <div key={weekDate} className="cell w-full max-w-[48px] sm:max-w-[80px] md:max-w-full aspect-square border-primary border-solid
+                    <div key={weekDate} className="cell w-full md:max-w-full aspect-square border-primary border-solid
                       sm:p-[1px]  lg:p-2 flex
                       flex-col items-center"
                       onClick={() => {
@@ -234,7 +234,7 @@ function OutfitCalendar() {
                   return (
                     <div
                       key={date}
-                      className="cell w-full max-w-[48px] sm:max-w-[80px] aspect-square border-primary border-solid
+                      className="cell w-full aspect-square border-primary border-solid
                       sm:p-[1px] lg:p-2
                       flex flex-col items-center"
                       onClick={() => {

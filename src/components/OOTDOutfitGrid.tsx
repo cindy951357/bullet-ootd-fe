@@ -42,7 +42,7 @@ console.log(filledCellsNum, updateTotalCellNum, updateEmptyCellNum)
 
   return (
     <div id="ootd-grid"
-      className={`grid gap-[1px] max-w-full max-w-[720px] h-full hover:cursor-pointer hover:opacity-100
+      className={`grid gap-[1px] max-w-full h-full hover:cursor-pointer hover:opacity-100
         ${
         totalCells === 1 ? "grid-cols-1" :
         totalCells === 2 ? "grid-cols-2 grid-rows-1" :
@@ -54,12 +54,12 @@ console.log(filledCellsNum, updateTotalCellNum, updateEmptyCellNum)
       {/** 若 selectedItems undefined，不進行以下判斷*/}
       {isEditing && Array.from({ length: emptyCells }).map((_, i) => (
         <div key={`empty-${i}`} className="empty-cell
-        w-full sm:max-w-[80px] md:max-w-full aspect-square bg-gray-100 rounded" />
+        w-full sm:max-w-full md:max-w-full aspect-square bg-gray-100 rounded" />
       ))}
       {
         !isEditing && !ootd && (
           <div key={`empty-without-outfit`} className="empty-cell
-          w-full md:max-w-[80px]  md:max-w-full aspect-square bg-gray-100 rounded" />
+          w-full md:max-w-full md:max-w-full aspect-square bg-gray-100 rounded" />
         )
       }
     </div>
