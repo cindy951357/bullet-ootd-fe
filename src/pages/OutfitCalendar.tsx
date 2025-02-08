@@ -6,11 +6,12 @@ import { useTranslation } from "react-i18next";
 
 import { RootState } from "../store";
 import { generateRandomOOTD } from "../utils/genOOTD";
-import { setOOTD } from "../features/ootdSlice";
+import { setOOTDs } from "../features/ootdSlice";
 import { setViewDate, setViewMode } from "../features/calendarSlice";
 
 import OutfitDetail from "../components/OutfitDetail";
 import OOTDGrid from "../components/OOTDOutfitGrid";
+import { OOTD } from "../types/ootd";
 
 
 function OutfitCalendar() {
@@ -26,7 +27,7 @@ function OutfitCalendar() {
   const viewMode = useSelector((state: RootState) => state.calendar.viewMode);
 
   // 以下兩者將互相取交集
-  const outfits = useSelector((state: RootState) => state.ootd.outfits);
+  const outfits = useSelector((state: RootState) => state.ootd.ootds);
   const dateMapping = useSelector((state: RootState) => state.ootd.dateMapping);
 
   // 查找對應的 OOTD 資料
@@ -35,7 +36,7 @@ function OutfitCalendar() {
     const mapping = dateMapping.find((mapping) => mapping.date === date);
     if (!mapping) return undefined;
     // 再用 dateMapping 中的 outfitId 欄位找吻合的 outfit
-    return outfits.find((ootd) => ootd.id === mapping.outfitId);
+    return outfits.find((ootd: OOTD) => ootd.id === mapping.outfitId);
   };
   
 
@@ -113,7 +114,7 @@ function OutfitCalendar() {
   useEffect(() => {
     // 生成 `k` 套衣服，每套衣服分配 `j` 天
     const {outfits, dateMapping} = generateRandomOOTD(12, 1);
-    dispatch(setOOTD({outfits, dateMapping})); // 傳遞至 Redux Store
+    dispatch(setOOTDs({ootds: outfits, dateMapping})); // 傳遞至 Redux Store
   }, [dispatch]);
   
 

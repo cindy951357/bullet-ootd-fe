@@ -1,16 +1,32 @@
-import { LayoutType, OOTD, SimpleOutfitItem } from "../types/ootd";
+import { useEffect, useState } from "react";
+import { OOTD, SimpleOutfitItem } from "../types/ootd";
 
 interface OOTDGridProps {
   ootd?: OOTD | null;
   onClick?: (item?: SimpleOutfitItem) => void;
-  layout: LayoutType;
+  selectedItems: SimpleOutfitItem[];
 }
 
-const OOTDOutfitGrid = ({ ootd, onClick, layout }: OOTDGridProps) => {
-console.log("ootd", ootd, "layout", layout)
-  const totalCells = layout === "single" ? 1 : layout === "double" ? 2 : layout === "four-grid" ? 4 : 9;
-  const filledCells = ootd ? ootd.items.length : 0;
-  const emptyCells = totalCells - filledCells;
+const OOTDOutfitGrid = ({ ootd, onClick, selectedItems}: OOTDGridProps) => {
+  const layout = ootd?.layout;
+  const [totalCells, setTotalCells] = useState(() =>
+    layout === "single" ? 1 : layout === "double" ? 2 : layout === "four-grid" ? 4 : 9);
+  const [filledCells, setFilledCells] = useState(() => (selectedItems ? selectedItems.length : 0));
+  const [emptyCells, setEmptyCells] = useState(() => totalCells - filledCells);
+console.log("totalCells", totalCells)
+  useEffect(() => {    
+console.log("useEfect")
+    const filledCellsNum = selectedItems ? selectedItems.length : 0;
+    const updateTotalCellNum = layout === "single" ? 1 : layout === "double" ? 2 : layout === "four-grid" ? 4 : 9
+    const updateEmptyCellNum = updateTotalCellNum - filledCellsNum;
+
+    setFilledCells(filledCellsNum);
+    
+    setTotalCells(updateTotalCellNum);
+    setEmptyCells(updateEmptyCellNum);
+  console.log("updatedTotalCellNum", updateTotalCellNum, "now layout:", layout, ootd?.items.length);
+  console.log("setEmptyCells", updateEmptyCellNum)
+  }, [layout, ootd?.items, ootd, selectedItems]);
 
   const renderItem = (item: SimpleOutfitItem, index: number) => (
     <div

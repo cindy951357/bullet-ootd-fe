@@ -31,5 +31,5 @@ const ootdSlice = createSlice({
   },
 });
 
-export const { setOOTD, addOOTD } = ootdSlice.actions;
+export const { addOOTD, setOOTDs } = ootdSlice.actions;
 export default ootdSlice.reducer;
