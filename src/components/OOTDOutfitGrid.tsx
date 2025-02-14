@@ -40,8 +40,8 @@ const OOTDOutfitGrid = ({ ootd, onClick, selectedItems, isEditing, }: OOTDGridPr
   );
 
   return (
-    <div id="ootd-grid"
-      className={`grid gap-[1px] max-w-full h-full hover:cursor-pointer hover:opacity-100
+    <div className={`ootd-grid grid gap-[1px] max-w-full h-full hover:cursor-pointer
+      hover:opacity-100
         ${
         totalCells === 1 ? "grid-cols-1" :
         totalCells === 2 ? "grid-cols-2 grid-rows-1" :
