@@ -9,9 +9,11 @@ export interface SimpleOutfitItem {
 export interface OutfitItem extends SimpleOutfitItem {
   category: "Top" | "Bottom" | "Footwear" | "Accessory" | "Outerwear" | "Fullset";
   subCategory: "T-shirt" | string;
+  name: string;
   brand: string;
   rating: number;
   wearCount: number;
+  styles: string[];
 }
 
 export interface OOTD {

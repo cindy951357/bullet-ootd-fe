@@ -159,7 +159,7 @@ function OutfitCalendar() {
   
 
   return (
-    <div id="outfit-calendar-page" className="three-sections w-[95vw] sm:w-full h-full
+    <div id="outfit-calendar-page" className="page three-sections w-[95vw] sm:w-full h-full
       flex flex-col gap-2
       sm:flex-row sm:gap-1 justify-center items-start
       mb-2 sm:mb-2
@@ -194,7 +194,7 @@ function OutfitCalendar() {
             {/* 根據 viewMode 渲染不同的日曆 */}
             {viewMode === "day" && (
               <div className="grid grid-cols-1 md:w-full sm:gap-0 gap-[1px]">
-                {[...Array(1)].map((_, i) => {
+                {[...Array(1)].map((_, __) => {
                   const dayDate = moment(currentViewDate).format("YYYY-MM-DD");
                   const ootd = getOOTDByDate(dayDate);
                   return (

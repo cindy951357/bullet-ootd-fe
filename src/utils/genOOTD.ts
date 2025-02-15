@@ -26,7 +26,7 @@ const layouts: LayoutType[] = ["single", "double", "four-grid", "nine-grid"];
 export const generateRandomOOTD = (k: number, j: number) => {
   const outfits: OOTD[] = [];
   const dateMapping: { date: string; outfitId: string }[] = [];
-  const baseDate = moment().startOf("month"); // 以本月第一天為基準
+  const baseDate = moment().startOf("week"); // 以本月第一天為基準
 
   // Fisher-Yates Shuffle 洗牌算法，確保完全隨機排序
   // 使用泛型：

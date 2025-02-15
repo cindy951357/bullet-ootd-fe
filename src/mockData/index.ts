@@ -9,7 +9,8 @@ export const MOCK_ITEMS:OutfitItem[] = [
         brand: "Chic",
         rating: 9,
         wearCount: 5,
-        isSelected: false
+        isSelected: false,
+        styles: ["chic", ]
     },
     {
         id: "xxx2",
@@ -19,6 +20,22 @@ export const MOCK_ITEMS:OutfitItem[] = [
         brand: "Lady",
         rating: 10,
         wearCount: 10,
-        isSelected: false
+        isSelected: false,
+        styles: ["casual", "formal",]
+    },
+    {
+        id: "0003",
+        imageUrl: "/demo-outfits/bottom-01.png",
+        category: "Bottom",
+        subCategory: "Skirt",
+        brand: "Cocodeal",
+        rating: 7,
+        wearCount: 4,
+        isSelected: false,
+        styles: ["casual", "formal",]
     }
 ];
+
+
+export const CLOTH_TYPES = ["Top", "Bottom", "Outerwear", "Footwear", "Accessories"];
+export const STYLES = ["casual", "formal", "sporty", "vintage", "minimal", "chic"];

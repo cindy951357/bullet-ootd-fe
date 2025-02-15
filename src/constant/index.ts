@@ -12,6 +12,7 @@ export const MENUS = [
     { 
       title: "Items", 
       subMenu: [
+        { title: "View Items", path: "/view-items" },
         { title: "Add Item", path: "/add-item" },
         { title: "Manage Items", path: "/manage-items" }
       ],

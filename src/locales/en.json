@@ -18,6 +18,28 @@
         "SelectImages": "Select Images",
         "Uploa,dLimit": "You can upload a maximum of {{max}} images."
     },
+    "Filter": {
+        "ClothType": "Clothing Type",
+        "Style": "Style"
+    },
+    "ClothList": {
+        "Title": "Your Wardrobe"
+    },
+    "ClothType": {
+        "Top": "Top",
+        "Bottom": "Bottom",
+        "Outerwear": "Outerwear",
+        "Footwear": "Footwear",
+        "Accessories": "Accessories"
+    },
+    "Style": {
+        "casual": "Casual",
+        "formal": "Formal",
+        "sporty": "Sporty",
+        "vintage": "Vintage",
+        "minimal": "Minimal",
+        "chic": "Chic"
+    },
     "Popup": {
         "UploadWarningTitle": "Upload Required",
         "UploadWarningMessage": "You need to upload at least one image before proceeding.",
