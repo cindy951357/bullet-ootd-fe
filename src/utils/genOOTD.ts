@@ -1,23 +1,6 @@
-import { OOTD, OutfitItem, LayoutType } from "../types/ootd";
+import { MOCK_ITEMS } from "../mockData";
+import { OOTD, LayoutType } from "../types/ootd";
 import moment from "moment";
-
-// 假設的衣物清單
-// 假設的衣物清單
-const demoItems: OutfitItem[] = [
-  { id: "1", imageUrl: "/demo-outfits/top-01.png", category: "Top", subCategory: "T-Shirt", brand: "Brand A", wearCount: 3, rating: 4.5, isSelected: false },
-  { id: "2", imageUrl: "/demo-outfits/top-02.png", category: "Top", subCategory: "Blouse", brand: "Brand B", wearCount: 5, rating: 4.2, isSelected: false },
-  { id: "3", imageUrl: "/demo-outfits/bottom-01.png", category: "Bottom", subCategory: "Jeans", brand: "Brand C", wearCount: 7, rating: 4.8, isSelected: false },
-  { id: "4", imageUrl: "/demo-outfits/bottom-02.png", category: "Bottom", subCategory: "Skirt", brand: "Brand D", wearCount: 2, rating: 3.9, isSelected: false },
-  { id: "5", imageUrl: "/demo-outfits/footwear-01.png", category: "Footwear", subCategory: "Sneakers", brand: "Brand E", wearCount: 10, rating: 4.7, isSelected: false },
-  { id: "6", imageUrl: "/demo-outfits/footwear-02.png", category: "Footwear", subCategory: "Boots", brand: "Brand F", wearCount: 4, rating: 4.3, isSelected: false },
-  { id: "7", imageUrl: "/demo-outfits/accessory-01.png", category: "Accessory", subCategory: "Necklace", brand: "Brand G", wearCount: 8, rating: 4.6, isSelected: false },
-  { id: "8", imageUrl: "/demo-outfits/accessory-02.png", category: "Accessory", subCategory: "Bracelet", brand: "Brand H", wearCount: 6, rating: 4.1, isSelected: false },
-  { id: "9", imageUrl: "/demo-outfits/outerwear-01.png", category: "Outerwear", subCategory: "Jacket", brand: "Brand I", wearCount: 9, rating: 4.9, isSelected: false },
-  { id: "10", imageUrl: "/demo-outfits/outerwear-02.png", category: "Outerwear", subCategory: "Coat", brand: "Brand J", wearCount: 3, rating: 4.0, isSelected: false },
-  { id: "11", imageUrl: "/demo-outfits/fullset-01.png", category: "Fullset", subCategory: "Dress", brand: "Brand K", wearCount: 1, rating: 4.4, isSelected: false },
-  { id: "12", imageUrl: "/demo-outfits/fullset-02.png", category: "Fullset", subCategory: "Suit", brand: "Brand L", wearCount: 2, rating: 4.2, isSelected: false },
-];
-
 
 // 布局類型
 const layouts: LayoutType[] = ["single", "double", "four-grid", "nine-grid"];
@@ -52,7 +35,7 @@ export const generateRandomOOTD = (k: number, j: number) => {
 
     // 從 demoItems 陣列中隨機選擇 itemCount 個元素，並返回一個新的陣列 selectedItems
     // 這一部分的作用是 對陣列進行隨機排序。
-    const selectedItems = [...demoItems].sort(() => 0.5 - Math.random()).slice(0, itemCount);
+    const selectedItems = [...MOCK_ITEMS].sort(() => 0.5 - Math.random()).slice(0, itemCount);
 
     // 添加到 `outfits`
     outfits.push({
