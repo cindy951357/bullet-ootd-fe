@@ -166,7 +166,7 @@ function OutfitCalendar() {
       px-[1px] sm:px-1">
       {!isSmallScreen && <TodayWeatherComponent />}
       <div id="main-calendar" className="w-full h-full max-w-[95vw]
-        sm:max-w-[566px] sm:max-h-[430px]
+        sm:max-w-[566px] xs:max-h-[430px] sm:h-full
           flex flex-col flex-1
           justify-start items-start pt-[2px]">
             <div className="calendar-outer-header w-full flex justify-between border-b border-b-primary">
@@ -193,18 +193,23 @@ function OutfitCalendar() {
 
             {/* 根據 viewMode 渲染不同的日曆 */}
             {viewMode === "day" && (
-              <div className="day-mode flex w-full justify-center">
-                <div className="max-w-full border-primary border-solid flex flex-col"
-                  onClick={() => {
-                    const ootd = getOOTDByDate(currentViewDate);
-                    setSelectedDate(moment(currentViewDate, "YYYY-MM-DD"));
-                    setSelectedOutfitId(ootd?.id ?? "");
-                    setShowDetail(!!ootd);
-                  }}
-                >
-                  <OOTDGrid ootd={getOOTDByDate(currentViewDate)} selectedItems={undefined} isEditing={false}/>
-                </div> 
-              </div>        
+              <div className="grid grid-cols-1 md:w-full sm:gap-0 gap-[1px]">
+                {[...Array(1)].map((_, i) => {
+                  const dayDate = moment(currentViewDate).format("YYYY-MM-DD");
+                  const ootd = getOOTDByDate(dayDate);
+                  return (
+                    <div key={dayDate} className="cell max-w-full border-primary border-solid flex flex-col"
+                      onClick={() => {
+                        setSelectedDate(moment(dayDate, "YYYY-MM-DD"));
+                        setSelectedOutfitId(ootd?.id ?? "");
+                        setShowDetail(!!ootd);
+                      }}>
+                      {!ootd && <div className={`render-empty-item relative w-full aspect-square bg-gray-100`}></div>}
+                      {ootd && <OOTDGrid ootd={ootd} selectedItems={undefined} isEditing={false} />}
+                    </div>
+                  );
+                })}
+              </div>
             )}
 
             {viewMode === "week" && (
